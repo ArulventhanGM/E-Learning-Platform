@@ -1,0 +1,875 @@
+need /* Main Styles for LearnHub E-Learning Platform */
+
+/* Global Styles */
+body {
+  font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Open Sans', 'Helvetica Neue', sans-serif;
+  color: #333;
+}
+
+/* Global link reset to prevent any default browser styling */
+a, a:link, a:visited, a:hover, a:active, a:focus {
+  text-decoration: none !important;
+}
+
+/* Specific override for Bootstrap navbar links */
+.navbar a, .navbar a:link, .navbar a:visited, .navbar a:hover, .navbar a:active, .navbar a:focus {
+  text-decoration: none !important;
+  border-bottom: none !important;
+  outline: none !important;
+}
+
+/* Only apply padding-top to non-React pages (legacy HTML pages) */
+body.legacy-page {
+  padding-top: 75px;
+}
+
+/* React App specific styles */
+.d-flex.flex-column.min-vh-100 {
+  min-height: 100vh;
+}
+
+/* Ensure main content has proper spacing from fixed navbar */
+main.flex-grow-1 {
+  padding-top: 80px; /* Space for fixed navbar */
+}
+
+/* Remove extra padding for home page */
+main.flex-grow-1:has(.home-page) {
+  padding-top: 0;
+}
+
+/* Alternative approach for home page - using CSS class */
+main.flex-grow-1.home-main {
+  padding-top: 0;
+}
+
+/* Enhanced navbar styling for route-based color changes */
+.navbar {
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar .nav-link {
+  transition: color 0.3s ease-in-out;
+  font-weight: 500;
+}
+
+.navbar .nav-link:hover {
+  transform: translateY(-1px);
+}
+
+.navbar .nav-link.text-dark:hover {
+  color: #007bff !important;
+}
+
+.navbar .nav-link.text-white:hover {
+  color: #f8f9fa !important;
+}
+
+/* Smooth transitions for all navbar elements */
+.navbar .navbar-brand,
+.navbar .btn,
+.navbar .nav-link,
+.navbar .user-name {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Remove all default link styling and focus effects */
+.navbar .nav-link,
+.navbar .nav-link:link,
+.navbar .nav-link:visited,
+.navbar .nav-link:hover,
+.navbar .nav-link:active,
+.navbar .nav-link:focus {
+  text-decoration: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+  background: none !important;
+}
+
+/* Remove Bootstrap's default focus styles */
+.navbar .nav-link:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove any underline effects from child elements */
+.navbar .nav-link span,
+.navbar .nav-link::before,
+.navbar .nav-link::after {
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
+/* Enhanced active state for navigation links - REMOVED UNDERLINE */
+.navbar .nav-link.active {
+  position: relative;
+  font-weight: bold;
+}
+
+/* Completely remove the blue underline effect */
+.navbar .nav-link.active::after,
+.navbar .nav-link::after {
+  display: none !important;
+}
+
+/* Additional browser-specific resets for navigation links */
+.navbar-nav .nav-link,
+.navbar-nav .nav-link:link,
+.navbar-nav .nav-link:visited,
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:active,
+.navbar-nav .nav-link:focus {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-color: transparent !important;
+  border-bottom: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Remove focus ring and any browser-specific focus styles */
+.navbar-nav .nav-link:focus-visible,
+.navbar-nav .nav-link:focus-within {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Remove any pseudo-element underlines */
+.navbar-nav .nav-link::before,
+.navbar-nav .nav-link::after,
+.navbar-nav .nav-link span::before,
+.navbar-nav .nav-link span::after {
+  content: none !important;
+  display: none !important;
+  border: none !important;
+  background: none !important;
+}
+
+/* Ensure React Router NavLink doesn't add default styles */
+.navbar-nav a[aria-current="page"],
+.navbar-nav a.active {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+/* Cross-browser compatibility for removing underlines */
+.navbar-nav .nav-link {
+  -webkit-text-decoration: none !important;
+  -moz-text-decoration: none !important;
+  -ms-text-decoration: none !important;
+  text-decoration: none !important;
+}
+
+/* Ensure navbar navigation items are always visible */
+.navbar-nav .nav-item {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.navbar-nav .nav-item.fade-in {
+  opacity: 1 !important;
+}
+
+/* Ensure navbar collapse is visible on desktop */
+@media (min-width: 992px) {
+  .navbar-collapse {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .navbar-nav {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Typography */
+h1, h2, h3, h4, h5, h6 {
+  font-weight: 700;
+}
+
+/* Header & Navigation */
+.navbar-brand {
+  font-size: 1.5rem;
+}
+
+.nav-link.active {
+  font-weight: 600;
+}
+
+/* Course Card Styles - Enhanced */
+.course-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 16px !important;
+  border: 1px solid rgba(0,0,0,0.08) !important;
+  overflow: hidden;
+}
+
+.course-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12) !important;
+}
+
+.course-card .card-img-top {
+  transition: transform 0.5s ease;
+}
+
+.course-card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+/* Course Badge */
+.course-badge {
+  z-index: 5;
+}
+
+/* Instructor Image */
+.instructor-img {
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+}
+
+/* Course Filter Sidebar - Enhanced */
+.filters {
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--bs-primary-rgb), 0.3) transparent;
+}
+
+.filters::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filters::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.filters::-webkit-scrollbar-thumb {
+  background: rgba(var(--bs-primary-rgb), 0.3);
+  border-radius: 3px;
+}
+
+.filters::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--bs-primary-rgb), 0.5);
+}
+
+/* Course Details Page */
+.course-header {
+  background-color: #f8f9fa;
+  padding: 3rem 0;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Dashboard */
+.dashboard-sidebar {
+  background-color: #f8f9fa;
+  min-height: calc(100vh - 75px);
+}
+
+.sidebar-link {
+  color: #495057;
+  padding: 0.75rem 1rem;
+  border-radius: 0.25rem;
+  display: flex;
+  align-items: center;
+  text-decoration: none;
+}
+
+.sidebar-link:hover,
+.sidebar-link.active {
+  color: #007bff;
+  background-color: #e9ecef;
+}
+
+.sidebar-link i {
+  margin-right: 0.75rem;
+}
+
+/* Login and Signup */
+.auth-form {
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.auth-heading {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* User Profile */
+.user-profile img {
+  object-fit: cover;
+}
+
+/* HomePage Styles */
+.feature-icon {
+  width: 80px;
+  height: 80px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 1rem;
+}
+
+/* Remove top padding for HomePage main content */
+.home-page {
+  margin-top: -3rem;
+}
+
+/* Responsive image for hero section */
+.hero-image {
+  max-width: 100%;
+  height: auto;
+  object-fit: cover;
+  border-radius: 10px;
+  box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
+}
+
+/* Section spacing and backgrounds */
+.hero-section {
+  padding: 6rem 0;
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+}
+
+.features-section {
+  padding: 5rem 0;
+}
+
+.cta-section {
+  padding: 5rem 0;
+  background-color: #f8f9fa;
+}
+
+/* User Profile Dropdown Styles */
+.user-profile-dropdown .dropdown-toggle {
+  transition: all 0.2s ease;
+}
+
+.user-profile-dropdown .dropdown-toggle:hover {
+  transform: translateY(-1px);
+}
+
+.user-profile-dropdown .dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.user-profile-dropdown .dropdown-menu {
+  border-radius: 12px;
+  padding: 0;
+  margin-top: 8px;
+  animation: dropdownFadeIn 0.15s ease-out;
+}
+
+.user-profile-dropdown .dropdown-item {
+  transition: all 0.2s ease;
+  border-radius: 0;
+}
+
+.user-profile-dropdown .dropdown-item:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.user-profile-dropdown .dropdown-item:first-of-type {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.user-profile-dropdown .dropdown-item:last-of-type {
+  border-bottom-left-radius: 12px;
+  border-bottom-right-radius: 12px;
+}
+
+.user-profile-dropdown .dropdown-header {
+  padding: 1rem;
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+.user-profile-dropdown .transition-transform {
+  transition: transform 0.2s ease;
+}
+
+.user-profile-dropdown .rotate-180 {
+  transform: rotate(180deg);
+}
+
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Theme Support */
+[data-theme="dark"] {
+  --bs-body-bg: #121212;
+  --bs-body-color: #ffffff;
+  --bs-primary: #0d6efd;
+  --bs-secondary: #6c757d;
+  --bs-success: #198754;
+  --bs-info: #0dcaf0;
+  --bs-warning: #ffc107;
+  --bs-danger: #dc3545;
+  --bs-light: #343a40;
+  --bs-dark: #f8f9fa;
+}
+
+[data-theme="dark"] body {
+  background-color: #121212;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .navbar-light {
+  background-color: #1e1e1e !important;
+}
+
+[data-theme="dark"] .navbar-light .navbar-brand,
+[data-theme="dark"] .navbar-light .navbar-nav .nav-link {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .card {
+  background-color: #1e1e1e;
+  border-color: #343a40;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .dropdown-menu {
+  background-color: #1e1e1e;
+  border-color: #343a40;
+}
+
+[data-theme="dark"] .dropdown-item {
+  color: #ffffff;
+}
+
+[data-theme="dark"] .dropdown-item:hover {
+  background-color: rgba(255, 255, 255, 0.1);
+  color: #ffffff;
+}
+
+[data-theme="dark"] .dropdown-header {
+  background-color: #343a40 !important;
+  color: #ffffff;
+}
+
+[data-theme="dark"] .text-dark {
+  color: #ffffff !important;
+}
+
+[data-theme="dark"] .text-muted {
+  color: #b0b0b0 !important;
+}
+
+[data-theme="dark"] .bg-light {
+  background-color: #343a40 !important;
+}
+
+/* Reduce animations for accessibility */
+.reduce-animations * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* High contrast mode */
+.high-contrast {
+  filter: contrast(150%);
+}
+
+.high-contrast .btn {
+  border-width: 2px !important;
+}
+
+/* Font size adjustments */
+:root {
+  --base-font-size: 16px;
+}
+
+body {
+  font-size: var(--base-font-size);
+}
+
+/* Mobile Responsive Styles */
+@media (max-width: 768px) {
+  .user-profile-dropdown .dropdown-menu {
+    min-width: 200px;
+    right: 0;
+    left: auto;
+  }
+
+  .user-profile-dropdown .user-info {
+    display: none !important;
+  }
+
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 0.5rem 0;
+  }
+
+  .login-buttons {
+    flex-direction: column;
+    gap: 0.5rem !important;
+  }
+
+  .login-buttons .btn {
+    width: 100%;
+  }
+
+  .search-form.active {
+    width: 250px !important;
+  }
+
+  /* Profile picture upload mobile styles */
+  .profile-picture-upload .btn {
+    font-size: 0.875rem;
+  }
+
+  .profile-picture-upload small {
+    font-size: 0.75rem;
+  }
+}
+
+@media (max-width: 576px) {
+  .user-profile-dropdown .dropdown-menu {
+    min-width: 180px;
+  }
+
+  .search-form.active {
+    width: 200px !important;
+  }
+
+  .navbar .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+
+  /* Settings page mobile */
+  .settings-tabs .list-group-item {
+    padding: 0.75rem 1rem;
+    font-size: 0.875rem;
+  }
+
+  /* Profile page mobile */
+  .profile-picture-upload {
+    margin-bottom: 1rem;
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .user-profile-dropdown .dropdown-item:hover {
+    background-color: rgba(0, 123, 255, 0.1);
+    transform: none;
+  }
+
+  .navbar .nav-link:hover {
+    transform: none;
+  }
+
+  .course-card:hover {
+    transform: none;
+  }
+}
+
+/* Animation keyframes for About Us and Contact Us pages */
+@keyframes gradientAnimation {
+  0% { transform: translateX(0) translateY(0); }
+  100% { transform: translateX(-50px) translateY(-50px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* Animation classes */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.reveal-on-scroll.animate-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  animation: fadeInLeft 0.8s ease-out;
+}
+
+.reveal-right {
+  animation: fadeInRight 0.8s ease-out;
+}
+
+.slide-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.slide-up.delay-1 {
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+}
+
+.slide-up.delay-2 {
+  animation-delay: 0.4s;
+  animation-fill-mode: both;
+}
+
+.slide-in-left {
+  animation: fadeInLeft 0.6s ease-out;
+  animation-fill-mode: both;
+  opacity: 1; /* Ensure elements are visible by default */
+}
+
+.slide-in-right {
+  animation: fadeInRight 0.6s ease-out;
+  animation-fill-mode: both;
+  opacity: 1; /* Ensure elements are visible by default */
+}
+
+.fade-in {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+  opacity: 1; /* Ensure elements are visible by default */
+}
+
+.scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Hover effects for cards and buttons */
+.hover-lift {
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.hover-lift:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15) !important;
+}
+
+/* Contact form enhancements */
+.contact-us-page .form-control:focus,
+.contact-us-page .form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.contact-us-page .btn-primary {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.contact-us-page .btn-primary:hover {
+  background: linear-gradient(135deg, #0a58ca 0%, #084298 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
+}
+
+/* About Us page specific styles */
+.about-us-page .stats-counter {
+  font-size: 2.5rem;
+  font-weight: bold;
+  color: #0d6efd;
+}
+
+.about-us-page .team-member-card {
+  transition: all 0.3s ease;
+}
+
+.about-us-page .team-member-card:hover {
+  transform: translateY(-10px);
+}
+
+.about-us-page .team-member-card img {
+  transition: transform 0.3s ease;
+}
+
+.about-us-page .team-member-card:hover img {
+  transform: scale(1.05);
+}
+
+/* FAQ accordion enhancements */
+.accordion-button {
+  transition: all 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Social media hover effects */
+.social-link {
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-3px);
+}
+
+/* Courses Page Specific Fixes */
+.courses-page .display-4 {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.courses-page .slide-up {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.courses-page .reveal {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* About Us Page Specific Fixes */
+.about-us-page .stats-counter {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.about-us-page .slide-up {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.about-us-page .card-body h3 {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.about-us-page .text-primary {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Global Animation Fallbacks - Ensure all text is visible */
+h1, h2, h3, h4, h5, h6, p, span, div {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Specific animation class fallbacks */
+.slide-up, .slide-down, .slide-in-left, .slide-in-right,
+.fade-in, .scale-in, .reveal, .reveal-left, .reveal-right {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Ensure hero sections are always visible */
+.hero-section h1, .hero-section h2, .hero-section p {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Ensure stats and counters are always visible */
+.stats-counter, .display-4, .lead {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Responsive adjustments for new pages */
+@media (max-width: 768px) {
+  .about-us-page .display-4,
+  .contact-us-page .display-4 {
+    font-size: 2.5rem;
+  }
+
+  .about-us-page .lead,
+  .contact-us-page .lead {
+    font-size: 1.1rem;
+  }
+
+  .about-us-page .team-member-card,
+  .contact-us-page .contact-info-card {
+    margin-bottom: 2rem;
+  }
+}
