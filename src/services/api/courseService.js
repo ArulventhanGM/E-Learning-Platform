@@ -95,22 +95,45 @@ const CourseService = {
    */
   getCourseById: async (courseId) => {
     try {
-      // Handle local course IDs
+      // First try to find the course in local data
+      let course = null;
+      
+      // Handle local course IDs with "local-" prefix
       if (courseId.startsWith('local-')) {
         const localId = parseInt(courseId.replace('local-', ''));
-        const course = localCourseData.find(c => c.id === localId);
+        course = localCourseData.find(c => c.id === localId);
+      } else {
+        // Try to find by numeric ID directly in local data
+        const numericId = parseInt(courseId);
+        if (!isNaN(numericId)) {
+          course = localCourseData.find(c => c.id === numericId);
+        }
+      }
+      
+      // If found in local data, return it
+      if (course) {
+        return {
+          ...course,
+          _id: courseId
+        };
+      }
+
+      // If not found in local data, try API
+      const response = await API.get(`/courses/${courseId}`);
+      return response.data;
+    } catch (error) {
+      // If API fails, try one more time to find in local data
+      const numericId = parseInt(courseId);
+      if (!isNaN(numericId)) {
+        const course = localCourseData.find(c => c.id === numericId);
         if (course) {
           return {
             ...course,
             _id: courseId
           };
         }
-        throw new Error('Course not found');
       }
-
-      const response = await API.get(`/courses/${courseId}`);
-      return response.data;
-    } catch (error) {
+      
       throw error.response?.data || { message: 'Failed to fetch course details' };
     }
   },
