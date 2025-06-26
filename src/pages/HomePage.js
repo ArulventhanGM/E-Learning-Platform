@@ -1,4 +1,4 @@
-import React, { useEffect, useRef } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { 
@@ -13,10 +13,14 @@ import {
   faUserGraduate,
   faGlobe
 } from '@fortawesome/free-solid-svg-icons';
+import CourseCard from '../components/courses/CourseCard';
+import courseData from '../data/courseData';
 
 function HomePage() {
   const statsContainerRef = useRef(null);
   const featuresRef = useRef(null);
+  const [featuredCourses, setFeaturedCourses] = useState([]);
+  const [isLoading, setIsLoading] = useState(true);
 
   // Counter animation function
   const animateCounters = (container) => {
@@ -91,6 +95,21 @@ function HomePage() {
       featuresObserver.disconnect();
       revealObserver.disconnect();
     };
+  }, []);
+
+  // Load featured courses
+  useEffect(() => {
+    const loadFeaturedCourses = () => {
+      setIsLoading(true);
+      // Simulate loading time and get first 3 courses as featured
+      setTimeout(() => {
+        const featured = courseData.slice(0, 3);
+        setFeaturedCourses(featured);
+        setIsLoading(false);
+      }, 1000);
+    };
+
+    loadFeaturedCourses();
   }, []);
 
   return (
@@ -348,13 +367,22 @@ function HomePage() {
             </div>
           </div>
           
-          <div className="text-center py-5 reveal">
-            <div className="spinner-border text-primary" role="status">
-              <span className="visually-hidden">Loading courses...</span>
+          {isLoading ? (
+            <div className="text-center py-5 reveal">
+              <div className="spinner-border text-primary" role="status">
+                <span className="visually-hidden">Loading courses...</span>
+              </div>
+              <p className="mt-3">Loading featured courses...</p>
             </div>
-            <p className="mt-3">Loading featured courses...</p>
-            <p className="text-muted">This is a placeholder. In a real implementation, course cards would be displayed here.</p>
-          </div>
+          ) : (
+            <div className="row g-4 reveal">
+              {featuredCourses.map((course, index) => (
+                <div key={course.id} className="col-lg-4 col-md-6" style={{ animationDelay: `${index * 0.1}s` }}>
+                  <CourseCard courseData={course} />
+                </div>
+              ))}
+            </div>
+          )}
         </div>
       </section>
 

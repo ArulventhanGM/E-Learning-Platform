@@ -59,7 +59,7 @@ const CourseCard = ({ course, featured = false }) => {
     description: 'Learn the fundamentals of React development and build modern web applications.',
     instructor: {
       name: 'John Doe',
-      avatar: 'https://i.pravatar.cc/100?img=12',
+      avatar: '/assets/images/avatar.jpg',
       verified: true
     },
     thumbnail: 'https://streamline-learning.com/wp-content/uploads/2024/10/online-courses-1024x537.png',
@@ -446,7 +446,7 @@ const CourseCard = ({ course, featured = false }) => {
             <div className="position-relative">
               <img
                 src={courseData.instructor && courseData.instructor.avatar ? courseData.instructor.avatar :
-                     (courseData.instructorImage || 'https://i.pravatar.cc/100?img=12')}
+                     (courseData.instructorImage || '/assets/images/avatar.jpg')}
                 alt={courseData.instructor ? courseData.instructor.name : courseData.instructor}
                 className="instructor-avatar rounded-circle me-3 border border-2 border-white shadow-sm"
                 width="36" height="36"

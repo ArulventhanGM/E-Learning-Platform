@@ -34,24 +34,16 @@ export const AuthProvider = ({ children }) => {
       const storedUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
       
       if (storedToken && storedUser && Object.keys(storedUser).length > 0) {
-        // Check if it's a demo token
-        if (storedToken.startsWith('demo-token-')) {
-          // Use demo user data
-          setUser(storedUser);
+        // Try to validate token with backend
+        try {
+          const userData = await authService.getUserProfile();
+          setUser(userData);
           setToken(storedToken);
           setIsAuthenticated(true);
-        } else {
-          // Try to validate real token with backend
-          try {
-            const userData = await authService.getUserProfile();
-            setUser(userData);
-            setToken(storedToken);
-            setIsAuthenticated(true);
-          } catch (error) {
-            console.error('Token validation failed:', error);
-            // Clear invalid token
-            clearAuth();
-          }
+        } catch (error) {
+          console.error('Token validation failed:', error);
+          // Clear invalid token
+          clearAuth();
         }
       }
     } catch (error) {
@@ -128,24 +120,6 @@ export const AuthProvider = ({ children }) => {
     }
   };
 
-  const demoLogin = () => {
-    try {
-      setIsLoading(true);
-      const { user: demoUser, token: demoToken } = authService.demoLogin();
-      
-      setUser(demoUser);
-      setToken(demoToken);
-      setIsAuthenticated(true);
-      
-      return { user: demoUser, token: demoToken };
-    } catch (error) {
-      console.error('Demo login error:', error);
-      throw error;
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   const logout = () => {
     clearAuth();
     // Redirect to home page
@@ -171,17 +145,10 @@ export const AuthProvider = ({ children }) => {
     try {
       setIsLoading(true);
       
-      // Check if demo user
-      if (token && token.startsWith('demo-token-')) {
-        // Update demo user locally
-        updateUser(profileData);
-        return { ...user, ...profileData };
-      } else {
-        // Update real user via API
-        const updatedUser = await authService.updateProfile(profileData);
-        updateUser(updatedUser);
-        return updatedUser;
-      }
+      // Update user via API
+      const updatedUser = await authService.updateProfile(profileData);
+      updateUser(updatedUser);
+      return updatedUser;
     } catch (error) {
       console.error('Profile update error:', error);
       throw error;
@@ -200,7 +167,6 @@ export const AuthProvider = ({ children }) => {
     // Methods
     login,
     register,
-    demoLogin,
     logout,
     updateUser,
     updateProfile,

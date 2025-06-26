@@ -7,7 +7,6 @@ import {
   faSignOutAlt,
   faCog,
   faGraduationCap,
-  faUserGraduate,
   faBell,
   faShoppingCart,
   faHeart
@@ -18,7 +17,7 @@ import UserProfileDropdown from '../common/UserProfileDropdown';
 
 function Header() {
   // Use authentication and cart contexts
-  const { user, isAuthenticated, demoLogin } = useAuth();
+  const { user, isAuthenticated } = useAuth();
   const { cartCount } = useCart();
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
@@ -68,15 +67,6 @@ function Header() {
       searchInputRef.current.focus();
     }
   }, [searchActive]);
-
-  const handleDemoLogin = async () => {
-    try {
-      demoLogin();
-      navigate('/dashboard');
-    } catch (error) {
-      console.error('Demo login failed:', error);
-    }
-  };
   
   const toggleMenu = () => {
     setMenuOpen(!menuOpen);
@@ -246,13 +236,6 @@ function Header() {
               {/* Login/Register buttons for non-logged in users */}
               {!isAuthenticated ? (
                 <div className="login-buttons d-flex gap-2">
-                  <button 
-                    className="btn btn-animated btn-success btn-sm rounded-pill hover-lift"
-                    onClick={handleDemoLogin}
-                  >
-                    <FontAwesomeIcon icon={faUserGraduate} className="me-1" />
-                    Demo
-                  </button>
                   <Link to="/login" className={`btn btn-animated ${shouldUseDarkNavbar ? 'btn-outline-primary' : 'btn-outline-light'} btn-sm rounded-pill hover-lift`}>Log In</Link>
                   <Link to="/signup" className="btn btn-animated btn-primary btn-sm rounded-pill hover-lift">Sign Up</Link>
                 </div>

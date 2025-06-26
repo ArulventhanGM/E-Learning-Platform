@@ -30,20 +30,7 @@ function DashboardPage() {
       try {
         setLoading(true);
 
-        // Check if this is a demo user first
-        const token = localStorage.getItem('token');
-        const storedUser = JSON.parse(localStorage.getItem('currentUser') || '{}');
-
-        if (token && token.startsWith('demo-token-')) {
-          // Use demo data from localStorage
-          setUser(storedUser);
-          setEnrolledCourses(storedUser.enrolledCourses || []);
-          setAchievements(storedUser.achievements || []);
-          setLoading(false);
-          return;
-        }
-
-        // Get user profile data for real users
+        // Get user profile data
         const userData = await authService.getUserProfile();
         setUser(userData);
         

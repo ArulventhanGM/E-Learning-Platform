@@ -6,7 +6,7 @@ import {
   faFacebookF,
   faApple
 } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope, faLock, faUserGraduate } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../contexts/AuthContext';
 
 function LoginPage() {
@@ -19,7 +19,7 @@ function LoginPage() {
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
   const navigate = useNavigate();
-  const { login, demoLogin } = useAuth();
+  const { login } = useAuth();
 
   const handleChange = (e) => {
     const { name, value, type, checked } = e.target;
@@ -84,22 +84,6 @@ function LoginPage() {
     }
   };
 
-  const handleDemoLogin = async (e) => {
-    e.preventDefault();
-
-    setIsLoading(true);
-    try {
-      console.log('Attempting demo login');
-      demoLogin();
-      navigate('/dashboard');
-    } catch (error) {
-      console.error('Demo login error:', error);
-      setErrors({ general: 'Demo login failed. Please try again.' });
-    } finally {
-      setIsLoading(false);
-    }
-  };
-
   return (
     <div className="container py-5">
       <div className="row justify-content-center">
@@ -109,18 +93,6 @@ function LoginPage() {
               <div className="auth-heading mb-4">
                 <h1 className="fw-bold">Welcome Back!</h1>
                 <p className="text-muted">Login to continue learning</p>
-              </div>
-              
-              {/* Demo Login Button */}
-              <div className="d-grid mb-4">
-                <button 
-                  className="btn btn-success" 
-                  onClick={handleDemoLogin}
-                  disabled={isLoading}
-                >
-                  <FontAwesomeIcon icon={faUserGraduate} className="me-2" />
-                  {isLoading ? 'Loading...' : 'Try Demo Login'}
-                </button>
               </div>
               
               {/* Social Login Options */}
