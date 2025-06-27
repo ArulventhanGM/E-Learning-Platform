@@ -18,14 +18,6 @@ A full-stack e-learning platform built with React and Node.js, designed for depl
 └── README.md        # This file
 ```
 
-## 🔒 Security Setup
-
-**IMPORTANT:** Before running the application, please read the security setup guide:
-
-📋 **[SECURITY_SETUP.md](SECURITY_SETUP.md)** - Essential security configuration
-
-⚠️ **Never commit database credentials to source control!**
-
 ## 🚀 Quick Start
 
 ### Local Development

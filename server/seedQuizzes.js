@@ -5,10 +5,16 @@ const Quiz = require('./models/Quiz');
 const Course = require('./models/Course');
 
 // Load environment variables
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
-// MongoDB connection
-const MONGODB_URI = process.env.MONGODB_URI || 'mongodb://localhost:27017/elearningdb';
+// MongoDB connection - use environment variable (REQUIRED)
+const MONGODB_URI = process.env.MONGODB_URI;
+
+if (!MONGODB_URI) {
+  console.error('❌ ERROR: MONGODB_URI environment variable is not set!');
+  console.error('Please set MONGODB_URI in your .env file or environment variables.');
+  process.exit(1);
+}
 
 // Sample quiz data
 const sampleQuizzes = [
@@ -123,8 +129,13 @@ const sampleQuizzes = [
 // Connect to MongoDB and seed quizzes
 async function seedQuizzes() {
   try {
-    console.log('Connecting to MongoDB...');
-    await mongoose.connect(MONGODB_URI);
+    console.log('Connecting to MongoDB for quiz seeding...');
+    console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+    
+    await mongoose.connect(MONGODB_URI, {
+      useNewUrlParser: true,
+      useUnifiedTopology: true,
+    });
     console.log('✅ Connected to MongoDB');
 
     // Get existing courses to associate quizzes with

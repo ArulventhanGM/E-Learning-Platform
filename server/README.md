@@ -16,16 +16,16 @@ Node.js backend API for the E-Learning Platform.
    ```
    NODE_ENV=production
    PORT=10000
-   MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/elearning
+   MONGODB_URI=mongodb+srv://arulventhangm23eie:YOUR_ACTUAL_PASSWORD@elearningplatform.1woyg59.mongodb.net/?retryWrites=true&w=majority&appName=ELearningPlatform
    JWT_SECRET=your-super-secret-jwt-key
    JWT_EXPIRE=7d
    CLIENT_URL=https://your-client-app.onrender.com
    ```
 
 3. **Database Setup**
-   - Create a MongoDB Atlas cluster
-   - Get your connection string
-   - Add it to the MONGODB_URI environment variable
+   - Your MongoDB Atlas cluster is already configured: `ELearningPlatform`
+   - Replace `YOUR_ACTUAL_PASSWORD` with your actual database password
+   - The connection string is already configured in the application
 
 ## 🔧 Local Development
 

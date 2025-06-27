@@ -6,14 +6,24 @@ const Course = require('./models/Course');
 const bcrypt = require('bcryptjs');
 
 // Load environment variables
-dotenv.config({ path: path.resolve(__dirname, '../.env') });
+dotenv.config({ path: path.resolve(__dirname, '.env') });
 
-// Connect to MongoDB using the exact connection string
-const MONGODB_URI = 'mongodb://admin:admin123@localhost:27017/elearning?authSource=admin';
+// Connect to MongoDB using environment variable (REQUIRED)
+const MONGODB_URI = process.env.MONGODB_URI;
 
-console.log('Attempting to connect to MongoDB with exact connection string');
+if (!MONGODB_URI) {
+  console.error('❌ ERROR: MONGODB_URI environment variable is not set!');
+  console.error('Please set MONGODB_URI in your .env file or environment variables.');
+  process.exit(1);
+}
 
-mongoose.connect(MONGODB_URI)
+console.log('Attempting to connect to MongoDB for seeding...');
+console.log(`Environment: ${process.env.NODE_ENV || 'development'}`);
+
+mongoose.connect(MONGODB_URI, {
+  useNewUrlParser: true,
+  useUnifiedTopology: true,
+})
   .then(() => console.log('MongoDB connected for seeding'))
   .catch(err => {
     console.error('MongoDB connection error:', err);

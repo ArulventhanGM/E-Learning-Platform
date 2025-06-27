@@ -8,7 +8,10 @@
     "dev": "nodemon server.js",
     "seed": "node seeder.js",
     "seed-quizzes": "node seedQuizzes.js",
-    "setup-db": "node setupMongoDB.js"
+    "setup-db": "node setupMongoDB.js",
+    "security-check": "node security-check.js",
+    "test-db": "node test-db-connection.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
     "bcryptjs": "^3.0.2",

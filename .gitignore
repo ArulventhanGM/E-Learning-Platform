@@ -15,6 +15,9 @@ client/.env
 server/.env
 client/.env.local
 server/.env.local
+server/.env.production
+*.env
+*.env.*
 
 # Ignore build outputs
 /build/
