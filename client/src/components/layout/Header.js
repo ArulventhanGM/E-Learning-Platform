@@ -112,7 +112,29 @@ function Header() {
     <header>
       <nav className={`navbar navbar-expand-lg navbar-light fixed-top transition-all ${shouldUseDarkNavbar ? 'bg-white shadow-sm py-2' : 'bg-transparent py-3'}`}>
         <div className="container">
-          <Link className="navbar-brand fw-bold slide-in-left" to="/">
+          <Link 
+            className="navbar-brand fw-bold slide-in-left logo-link" 
+            to="/"
+            onClick={(e) => {
+              console.log('Logo clicked, current path:', location.pathname);
+              
+              // Ensure we navigate to home and close any open menus
+              setMenuOpen(false);
+              setSearchActive(false);
+              setThemeDropdownOpen(false);
+              
+              // Force navigation to home page if not already there
+              if (location.pathname !== '/') {
+                console.log('Navigating to home page...');
+                e.preventDefault(); // Prevent default Link behavior
+                navigate('/');
+              } else {
+                console.log('Already on home page');
+                // If already on home page, scroll to top
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
+            }}
+          >
             <div className="d-flex align-items-center">
               <div className="brand-logo me-2 rounded-circle bg-primary d-flex align-items-center justify-content-center"
                   style={{ width: '40px', height: '40px', overflow: 'hidden' }}>
@@ -324,6 +346,45 @@ function Header() {
       
       {/* Custom CSS for navbar */}
       <style jsx="true">{`
+        /* Logo styles */
+        .navbar-brand {
+          text-decoration: none !important;
+          cursor: pointer;
+          transition: all 0.3s ease;
+          z-index: 10;
+          position: relative;
+        }
+
+        .navbar-brand:hover {
+          transform: scale(1.05);
+          text-decoration: none !important;
+        }
+
+        .navbar-brand:focus,
+        .navbar-brand:active {
+          outline: none !important;
+          box-shadow: none !important;
+          text-decoration: none !important;
+        }
+
+        .logo-link {
+          display: flex !important;
+          align-items: center !important;
+          user-select: none;
+        }
+
+        .brand-logo {
+          transition: all 0.3s ease;
+        }
+
+        .navbar-brand:hover .brand-logo {
+          transform: rotate(5deg) scale(1.1);
+        }
+
+        .navbar-brand:active {
+          transform: scale(0.98);
+        }
+
         .search-form.active {
           z-index: 100;
         }
