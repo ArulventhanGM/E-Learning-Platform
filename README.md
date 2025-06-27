@@ -1,196 +1,125 @@
-# 🎓 E-Learning Platform
+# E-Learning Platform
 
-A full-stack online learning platform with complete CRUD functionality, built with React, Node.js, Express, and MongoDB.
+A full-stack e-learning platform built with React and Node.js, designed for deployment on Render.
 
-![React](https://img.shields.io/badge/React-18.2.0-blue) ![Node.js](https://img.shields.io/badge/Node.js-Express-green) ![MongoDB](https://img.shields.io/badge/MongoDB-Database-lightgreen) ![JWT](https://img.shields.io/badge/JWT-Authentication-orange)
+## 🏗️ Project Structure
 
-## 🚀 Features
-
-### ✅ Complete CRUD Operations
-- **Users**: Registration, authentication, profile management, role assignment
-- **Courses**: Full course management with lessons and instructor capabilities  
-- **Quizzes**: Quiz creation, management, and result tracking
-- **Progress**: Enrollment tracking, lesson completion, achievements
-
-### 🔐 Security & Authentication
-- JWT-based authentication
-- Role-based access control (Student, Instructor, Admin)
-- Protected routes and middleware
-- Input validation and sanitization
-
-### 🎨 Modern UI/UX
-- Responsive design for all devices
-- Dynamic navbar with route-based styling
-- Smooth animations and transitions
-- Intuitive user interface
-
-## 🛠️ Technology Stack
-
-**Frontend**: React 18.2.0, React Router, Bootstrap 5.3.0  
-**Backend**: Node.js, Express.js, JWT Authentication  
-**Database**: MongoDB with Mongoose ODM  
-**Development**: Modern ES6+, REST API, Git
+```
+├── client/          # React frontend
+│   ├── src/         # React source code
+│   ├── public/      # Static files
+│   └── package.json # Client dependencies
+├── server/          # Node.js backend
+│   ├── models/      # MongoDB models
+│   ├── routes/      # API routes
+│   ├── middleware/  # Express middleware
+│   └── package.json # Server dependencies
+├── package.json     # Root workspace configuration
+└── README.md        # This file
+```
 
 ## 🚀 Quick Start
 
-### Prerequisites
-- Node.js (v16+)
-- MongoDB (local or Atlas)
-- Git
+### Local Development
 
-### Installation
-
-1. **Clone the repository**
+1. **Install dependencies**
    ```bash
-   git clone <your-repo-url>
-   cd E-Learning-Platform
+   npm run install-all
    ```
 
-2. **Install dependencies**
+2. **Start development servers**
    ```bash
-   npm install
+   npm run dev
    ```
+   - Client: http://localhost:3000
+   - Server: http://localhost:5000
 
-3. **Environment Setup**
-   Create `.env` file in root:
-   ```env
-   MONGODB_URI=mongodb://localhost:27017/elearning
-   JWT_SECRET=your_jwt_secret_here
-   PORT=5000
-   ```
+### Individual Services
 
-4. **Start MongoDB**
-   ```bash
-   # If using local MongoDB
-   mongod
-   ```
-
-5. **Run the application**
-   
-   **Backend** (Terminal 1):
-   ```bash
-   cd server
-   node server.js
-   ```
-   
-   **Frontend** (Terminal 2):
-   ```bash
-   npm start
-   ```
-
-6. **Access the application**
-   - Frontend: http://localhost:3000
-   - Backend API: http://localhost:5000
-
-## 📁 Project Structure
-
-```
-E-Learning-Platform/
-├── src/                 # React frontend
-│   ├── components/      # Reusable UI components
-│   ├── pages/          # Page components
-│   ├── contexts/       # React contexts
-│   ├── services/       # API services
-│   └── utils/          # Utility functions
-├── server/             # Express backend
-│   ├── models/         # MongoDB models
-│   ├── routes/         # API routes
-│   ├── middleware/     # Authentication middleware
-│   └── server.js       # Server entry point
-├── public/             # Static assets
-└── assets/            # Additional assets
+**Client only:**
+```bash
+npm run client
 ```
 
-## 🔑 User Roles
-
-### 👨‍🎓 Student
-- Browse and enroll in courses
-- Take quizzes and track progress
-- Manage profile and view achievements
-
-### 👨‍🏫 Instructor  
-- Create and manage courses
-- Add lessons and course content
-- Create and manage quizzes
-- View student progress
-
-### 👨‍💼 Admin
-- Full system access
-- User role management
-- Course and content moderation
-- System analytics and reporting
-
-## 📚 API Documentation
-
-### Authentication Endpoints
-- `POST /api/users/register` - User registration
-- `POST /api/users/login` - User login
-- `GET /api/users/profile` - Get user profile
-
-### Course Management
-- `GET /api/courses` - List courses (with filtering)
-- `POST /api/courses` - Create course (instructor+)
-- `PUT /api/courses/:id` - Update course (instructor+)
-- `DELETE /api/courses/:id` - Delete course (instructor+)
-
-### Quiz Management  
-- `GET /api/quiz` - List quizzes
-- `POST /api/quiz` - Create quiz (instructor+)
-- `PUT /api/quiz/:id` - Update quiz (instructor+)
-- `DELETE /api/quiz/:id` - Delete quiz (instructor+)
-
-For complete API documentation, see `DOCUMENTATION.md`.
-
-## 🔧 Development
-
-### Available Scripts
-- `npm start` - Start React development server
-- `npm run build` - Build for production
-- `npm test` - Run tests
-- `cd server && node server.js` - Start backend server
-
-### Environment Variables
-```env
-MONGODB_URI=mongodb://localhost:27017/elearning
-JWT_SECRET=your_secure_jwt_secret
-PORT=5000
-NODE_ENV=development
+**Server only:**
+```bash
+npm run server
 ```
 
-## 🚀 Deployment
+## 🌐 Deployment on Render
 
-### Production Setup
-1. Set environment variables for production
-2. Build React app: `npm run build`
-3. Configure MongoDB Atlas for cloud database
-4. Deploy backend to Heroku/AWS/DigitalOcean
-5. Deploy frontend to Netlify/Vercel
+### 1. Client Deployment (Static Site)
+- **Repository**: Connect your GitHub repo
+- **Root Directory**: `client`
+- **Build Command**: `npm run build`
+- **Publish Directory**: `build`
+- **Environment Variables**:
+  ```
+  REACT_APP_API_URL=https://your-server-name.onrender.com/api
+  REACT_APP_NODE_ENV=production
+  ```
 
-## 📖 Documentation
+### 2. Server Deployment (Web Service)
+- **Repository**: Connect your GitHub repo
+- **Root Directory**: `server`
+- **Build Command**: `npm install`
+- **Start Command**: `npm start`
+- **Environment Variables**:
+  ```
+  NODE_ENV=production
+  PORT=10000
+  MONGODB_URI=mongodb+srv://username:password@cluster.mongodb.net/elearning
+  JWT_SECRET=your-super-secret-jwt-key
+  JWT_EXPIRE=7d
+  CLIENT_URL=https://your-client-app.onrender.com
+  ```
 
-- **Complete Documentation**: `DOCUMENTATION.md`
-- **CRUD Implementation**: `CRUD_IMPLEMENTATION.md`
-- **API Examples**: See documentation files
+## 🔧 Available Scripts
+
+- `npm run dev` - Start both client and server in development mode
+- `npm run client` - Start React development server
+- `npm run server` - Start Node.js development server
+- `npm run build` - Build React app for production
+- `npm run install-all` - Install dependencies for both client and server
+
+## 🛠️ Technologies
+
+### Frontend
+- React 18
+- React Router DOM
+- Bootstrap 5
+- FontAwesome
+- Axios
+
+### Backend
+- Node.js
+- Express.js
+- MongoDB with Mongoose
+- JWT Authentication
+- bcrypt for password hashing
+- CORS
+
+## 📚 Features
+
+- User authentication and authorization
+- Course management (CRUD operations)
+- Quiz system with results tracking
+- Role-based access control (Student, Instructor, Admin)
+- Responsive design
+- RESTful API architecture
+
+## 📝 API Documentation
+
+See the [CRUD Implementation Guide](./CRUD_IMPLEMENTATION.md) for detailed API documentation.
 
 ## 🤝 Contributing
 
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature-name`
-3. Commit changes: `git commit -m 'Add feature'`
-4. Push to branch: `git push origin feature-name`
+2. Create a feature branch
+3. Make your changes
+4. Test your changes
 5. Submit a pull request
 
 ## 📄 License
 
 This project is licensed under the MIT License.
-
-## 🆘 Support
-
-For questions or support:
-- Check the documentation files
-- Create an issue in the repository
-- Review the API examples
-
----
-
-**Built with ❤️ using React, Node.js, and MongoDB**

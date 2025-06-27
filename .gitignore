@@ -1,5 +1,7 @@
 # Ignore node_modules
 node_modules/
+client/node_modules/
+server/node_modules/
 node_modules/.cache/
 node_modules/**/*.pack
 
@@ -9,11 +11,17 @@ node_modules/**/*.pack
 .env.development
 .env.test
 .env.production
+client/.env
+server/.env
+client/.env.local
+server/.env.local
 
 # Ignore build outputs
 /build/
 /dist/
 /.next/
+client/build/
+client/dist/
 
 # Ignore cache files
 .cache/
