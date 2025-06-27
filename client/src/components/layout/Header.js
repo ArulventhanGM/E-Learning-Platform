@@ -5,26 +5,32 @@ import {
   faSearch,
   faUser,
   faSignOutAlt,
-  faCog,
   faGraduationCap,
   faBell,
   faShoppingCart,
-  faHeart
+  faHeart,
+  faSun,
+  faMoon,
+  faPalette
 } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../contexts/AuthContext';
 import { useCart } from '../../contexts/CartContext';
+import { useTheme } from '../../contexts/ThemeContext';
 import UserProfileDropdown from '../common/UserProfileDropdown';
 
 function Header() {
   // Use authentication and cart contexts
   const { user, isAuthenticated } = useAuth();
   const { cartCount } = useCart();
+  const { theme, setLightTheme, setDarkTheme } = useTheme();
   const [isScrolled, setIsScrolled] = useState(false);
   const [menuOpen, setMenuOpen] = useState(false);
   const [searchActive, setSearchActive] = useState(false);
   const [searchQuery, setSearchQuery] = useState('');
   const [cartBounce, setCartBounce] = useState(false);
+  const [themeDropdownOpen, setThemeDropdownOpen] = useState(false);
   const searchInputRef = useRef(null);
+  const themeDropdownRef = useRef(null);
 
   const navigate = useNavigate();
   const location = useLocation();
@@ -60,6 +66,23 @@ function Header() {
       window.removeEventListener('scroll', handleScroll);
     };
   }, []);
+
+  // Handle click outside to close theme dropdown
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (themeDropdownRef.current && !themeDropdownRef.current.contains(event.target)) {
+        setThemeDropdownOpen(false);
+      }
+    };
+
+    if (themeDropdownOpen) {
+      document.addEventListener('mousedown', handleClickOutside);
+    }
+
+    return () => {
+      document.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, [themeDropdownOpen]);
 
   // Focus search input when search is active
   useEffect(() => {
@@ -232,6 +255,58 @@ function Header() {
                   </div>
                 </>
               )}
+              
+              {/* Theme Settings Button - Available for all users */}
+              <div className="position-relative mx-1" ref={themeDropdownRef}>
+                <button
+                  className={`btn btn-icon btn-sm rounded-circle d-flex align-items-center justify-content-center hover-lift transition-all ${
+                    shouldUseDarkNavbar ? 'btn-light' : 'btn-outline-light'
+                  }`}
+                  style={{ width: '38px', height: '38px' }}
+                  onClick={() => setThemeDropdownOpen(!themeDropdownOpen)}
+                  title="Theme Settings"
+                >
+                  <FontAwesomeIcon 
+                    icon={theme === 'dark' ? faSun : faMoon} 
+                    className={shouldUseDarkNavbar ? 'text-primary' : 'text-white'} 
+                  />
+                </button>
+                
+                {themeDropdownOpen && (
+                  <div className="dropdown-menu dropdown-menu-end show position-absolute" style={{ 
+                    top: '100%', 
+                    right: '0', 
+                    minWidth: '180px',
+                    zIndex: 1000,
+                    marginTop: '8px'
+                  }}>
+                    <h6 className="dropdown-header">
+                      <FontAwesomeIcon icon={faPalette} className="me-2" />
+                      Theme Settings
+                    </h6>
+                    <button 
+                      className={`dropdown-item d-flex align-items-center ${theme === 'light' ? 'active' : ''}`}
+                      onClick={() => {
+                        setLightTheme();
+                        setThemeDropdownOpen(false);
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faSun} className="me-2" />
+                      Light Theme
+                    </button>
+                    <button 
+                      className={`dropdown-item d-flex align-items-center ${theme === 'dark' ? 'active' : ''}`}
+                      onClick={() => {
+                        setDarkTheme();
+                        setThemeDropdownOpen(false);
+                      }}
+                    >
+                      <FontAwesomeIcon icon={faMoon} className="me-2" />
+                      Dark Theme
+                    </button>
+                  </div>
+                )}
+              </div>
               
               {/* Login/Register buttons for non-logged in users */}
               {!isAuthenticated ? (

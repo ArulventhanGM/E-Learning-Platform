@@ -153,7 +153,7 @@ function HomePage() {
         <div className="container py-5 position-relative">
           <div className="row align-items-center">
             <div className="col-lg-6 text-white reveal-left">
-              <span className="badge bg-light text-dark px-3 py-2 rounded-pill mb-3 slide-up">Ready To Learn?</span>
+              {/* Hidden: Ready To Learn badge */}
               <h1 className="display-4 fw-bold mb-4 slide-up">Unlock Your <span className="text-warning">Potential</span> With Our Courses</h1>
               <p className="lead mb-4 slide-up delay-1 opacity-75">Access a world of knowledge with our comprehensive online courses. Learn from industry experts and advance your career.</p>
               <div className="d-flex gap-3 slide-up delay-2">

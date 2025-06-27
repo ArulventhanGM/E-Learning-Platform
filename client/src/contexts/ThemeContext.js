@@ -35,19 +35,19 @@ export const ThemeProvider = ({ children }) => {
       // Load theme settings from localStorage
       const savedSettings = JSON.parse(localStorage.getItem('themeSettings') || '{}');
       
-      if (savedSettings.theme) setTheme(savedSettings.theme);
       if (savedSettings.fontSize) setFontSize(savedSettings.fontSize);
       if (savedSettings.reduceAnimations !== undefined) setReduceAnimations(savedSettings.reduceAnimations);
       if (savedSettings.highContrast !== undefined) setHighContrast(savedSettings.highContrast);
       if (savedSettings.language) setLanguage(savedSettings.language);
       
-      // Check for system preference if no saved theme
-      if (!savedSettings.theme) {
-        const prefersDark = window.matchMedia('(prefers-color-scheme: dark)').matches;
-        setTheme(prefersDark ? 'dark' : 'light');
-      }
+      // Always default to light theme, but load saved theme if exists
+      const savedTheme = savedSettings.theme || 'light';
+      setTheme(savedTheme);
+      
     } catch (error) {
       console.error('Error loading theme settings:', error);
+      // If error, default to light theme
+      setTheme('light');
     }
   };
 
@@ -106,6 +106,16 @@ export const ThemeProvider = ({ children }) => {
   const updateTheme = (newTheme) => {
     setTheme(newTheme);
     saveSettings({ theme: newTheme });
+  };
+
+  const setLightTheme = () => {
+    setTheme('light');
+    saveSettings({ theme: 'light' });
+  };
+
+  const setDarkTheme = () => {
+    setTheme('dark');
+    saveSettings({ theme: 'dark' });
   };
 
   const updateFontSize = (newFontSize) => {
@@ -186,6 +196,8 @@ export const ThemeProvider = ({ children }) => {
     // Methods
     toggleTheme,
     updateTheme,
+    setLightTheme,
+    setDarkTheme,
     updateFontSize,
     updateReduceAnimations,
     updateHighContrast,
