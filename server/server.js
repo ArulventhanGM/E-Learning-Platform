@@ -13,6 +13,15 @@ const authMiddleware = require('./middleware/authMiddleware');
 // Load environment variables
 dotenv.config({ path: path.resolve(__dirname, '.env') });
 
+// Debug environment variables
+console.log('🔍 Environment Variables Debug:');
+console.log('- NODE_ENV:', process.env.NODE_ENV);
+console.log('- PORT:', process.env.PORT);
+console.log('- MONGODB_URI exists:', !!process.env.MONGODB_URI);
+console.log('- MONGODB_URI type:', typeof process.env.MONGODB_URI);
+console.log('- JWT_SECRET exists:', !!process.env.JWT_SECRET);
+console.log('- CLIENT_URL:', process.env.CLIENT_URL);
+
 // Connect to Database
 connectDB();
 

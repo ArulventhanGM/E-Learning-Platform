@@ -91,7 +91,4 @@ UserSchema.methods.comparePassword = async function(password) {
   }
 };
 
-// Create an index for email to ensure uniqueness
-UserSchema.index({ email: 1 }, { unique: true });
-
 module.exports = mongoose.model('User', UserSchema);
