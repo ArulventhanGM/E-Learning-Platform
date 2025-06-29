@@ -5,8 +5,36 @@ import {
   faGoogle,
   faFacebookF,
   faApple
-} from '@fortawesome/free-brands-svg-icons';
-import { faUser, faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+}                 <div className="mb-3">
+                  <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+                  <div className="input-group">
+                    <span className="input-group-text bg-light">
+                      <FontAwesomeIcon icon={faLock} />
+                    </span>
+                    <input
+                      type={showConfirmPassword ? "text" : "password"}
+                      className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
+                      id="confirmPassword"
+                      name="confirmPassword"
+                      placeholder="Confirm your password"
+                      autoComplete="new-password"
+                      value={formData.confirmPassword}
+                      onChange={handleChange}
+                    />
+                    <button
+                      type="button"
+                      className="btn password-toggle-btn"
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                    >
+                      <FontAwesomeIcon 
+                        icon={showConfirmPassword ? faEyeSlash : faEye} 
+                        className="text-muted"
+                      />
+                    </button>
+                    {errors.confirmPassword && <div className="invalid-feedback">{errors.confirmPassword}</div>}
+                  </div>
+                </div>free-brands-svg-icons';
+import { faUser, faEnvelope, faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../contexts/AuthContext';
 
 function SignupPage() {
@@ -20,6 +48,8 @@ function SignupPage() {
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [showConfirmPassword, setShowConfirmPassword] = useState(false);
   const navigate = useNavigate();
   const { register } = useAuth();
 
@@ -187,7 +217,7 @@ function SignupPage() {
                       <FontAwesomeIcon icon={faLock} />
                     </span>
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       className={`form-control ${errors.password ? 'is-invalid' : ''}`}
                       id="password"
                       name="password"
@@ -196,6 +226,16 @@ function SignupPage() {
                       value={formData.password}
                       onChange={handleChange}
                     />
+                    <button
+                      type="button"
+                      className="btn password-toggle-btn"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      <FontAwesomeIcon 
+                        icon={showPassword ? faEyeSlash : faEye} 
+                        className="text-muted"
+                      />
+                    </button>
                     {errors.password && <div className="invalid-feedback">{errors.password}</div>}
                   </div>
                   <small className="form-text text-muted">Must be at least 8 characters long</small>

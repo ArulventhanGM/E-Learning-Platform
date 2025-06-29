@@ -6,7 +6,7 @@ import {
   faFacebookF,
   faApple
 } from '@fortawesome/free-brands-svg-icons';
-import { faEnvelope, faLock } from '@fortawesome/free-solid-svg-icons';
+import { faEnvelope, faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../contexts/AuthContext';
 
 function LoginPage() {
@@ -18,6 +18,7 @@ function LoginPage() {
 
   const [errors, setErrors] = useState({});
   const [isLoading, setIsLoading] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
   const navigate = useNavigate();
   const { login } = useAuth();
 
@@ -153,7 +154,7 @@ function LoginPage() {
                       <FontAwesomeIcon icon={faLock} />
                     </span>
                     <input
-                      type="password"
+                      type={showPassword ? "text" : "password"}
                       className={`form-control ${errors.password ? 'is-invalid' : ''}`}
                       id="password"
                       name="password"
@@ -162,6 +163,16 @@ function LoginPage() {
                       value={formData.password}
                       onChange={handleChange}
                     />
+                    <button
+                      type="button"
+                      className="btn password-toggle-btn"
+                      onClick={() => setShowPassword(!showPassword)}
+                    >
+                      <FontAwesomeIcon 
+                        icon={showPassword ? faEyeSlash : faEye} 
+                        className="text-muted"
+                      />
+                    </button>
                     {errors.password && <div className="invalid-feedback">{errors.password}</div>}
                   </div>
                 </div>
