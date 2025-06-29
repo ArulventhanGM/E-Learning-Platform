@@ -18,6 +18,7 @@
     "check-env": "node check-env.js",
     "verify-mongodb": "node verify-mongodb-uri.js",
     "verify-config": "node verify-full-config.js",
+    "test-frontend-config": "node test-frontend-api-config.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {

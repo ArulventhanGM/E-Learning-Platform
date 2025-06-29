@@ -2,7 +2,7 @@ import axios from 'axios';
 
 // Create axios instance with default config
 const API = axios.create({
-  baseURL: process.env.REACT_APP_API_URL || 'https://e-learning-platform-6263.onrender.com/',
+  baseURL: process.env.REACT_APP_API_URL || 'https://e-learning-platform-6263.onrender.com/api',
   headers: {
     'Content-Type': 'application/json'
   },
@@ -41,7 +41,7 @@ API.interceptors.response.use(
     if (!error.response) {
       console.error('Network error - server might be down or not reachable');
       // Format a more user-friendly error
-      const connectionError = new Error('Server connection error. Please make sure the backend server is running on port 5000.');
+      const connectionError = new Error('Server connection error. Please check if the backend server is accessible.');
       connectionError.isConnectionError = true;
       return Promise.reject(connectionError);
     }

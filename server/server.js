@@ -32,8 +32,11 @@ const app = express();
 const allowedOrigins = [
   'http://localhost:3000', 
   'http://127.0.0.1:3000',
+  'https://e-learning-platform-53vt.onrender.com', // Frontend URL
   process.env.CLIENT_URL // For production deployment
 ].filter(Boolean);
+
+console.log('🌐 CORS allowed origins:', allowedOrigins);
 
 app.use(cors({
   origin: allowedOrigins,
