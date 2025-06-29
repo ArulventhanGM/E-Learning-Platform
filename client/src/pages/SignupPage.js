@@ -5,35 +5,7 @@ import {
   faGoogle,
   faFacebookF,
   faApple
-}                 <div className="mb-3">
-                  <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
-                  <div className="input-group">
-                    <span className="input-group-text bg-light">
-                      <FontAwesomeIcon icon={faLock} />
-                    </span>
-                    <input
-                      type={showConfirmPassword ? "text" : "password"}
-                      className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
-                      id="confirmPassword"
-                      name="confirmPassword"
-                      placeholder="Confirm your password"
-                      autoComplete="new-password"
-                      value={formData.confirmPassword}
-                      onChange={handleChange}
-                    />
-                    <button
-                      type="button"
-                      className="btn password-toggle-btn"
-                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
-                    >
-                      <FontAwesomeIcon 
-                        icon={showConfirmPassword ? faEyeSlash : faEye} 
-                        className="text-muted"
-                      />
-                    </button>
-                    {errors.confirmPassword && <div className="invalid-feedback">{errors.confirmPassword}</div>}
-                  </div>
-                </div>free-brands-svg-icons';
+} from '@fortawesome/free-brands-svg-icons';
 import { faUser, faEnvelope, faLock, faEye, faEyeSlash } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../contexts/AuthContext';
 
