@@ -166,7 +166,9 @@ function LoginPage() {
                     <button
                       type="button"
                       className="btn password-toggle-btn"
+                      data-password-visible={showPassword}
                       onClick={() => setShowPassword(!showPassword)}
+                      aria-label={showPassword ? "Hide password" : "Show password"}
                     >
                       <FontAwesomeIcon 
                         icon={showPassword ? faEyeSlash : faEye} 

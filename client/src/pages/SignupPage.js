@@ -201,7 +201,9 @@ function SignupPage() {
                     <button
                       type="button"
                       className="btn password-toggle-btn"
+                      data-password-visible={showPassword}
                       onClick={() => setShowPassword(!showPassword)}
+                      aria-label={showPassword ? "Hide password" : "Show password"}
                     >
                       <FontAwesomeIcon 
                         icon={showPassword ? faEyeSlash : faEye} 
@@ -220,7 +222,7 @@ function SignupPage() {
                       <FontAwesomeIcon icon={faLock} />
                     </span>
                     <input
-                      type="password"
+                      type={showConfirmPassword ? "text" : "password"}
                       className={`form-control ${errors.confirmPassword ? 'is-invalid' : ''}`}
                       id="confirmPassword"
                       name="confirmPassword"
@@ -229,6 +231,18 @@ function SignupPage() {
                       value={formData.confirmPassword}
                       onChange={handleChange}
                     />
+                    <button
+                      type="button"
+                      className="btn password-toggle-btn"
+                      data-password-visible={showConfirmPassword}
+                      onClick={() => setShowConfirmPassword(!showConfirmPassword)}
+                      aria-label={showConfirmPassword ? "Hide confirm password" : "Show confirm password"}
+                    >
+                      <FontAwesomeIcon 
+                        icon={showConfirmPassword ? faEyeSlash : faEye} 
+                        className="text-muted"
+                      />
+                    </button>
                     {errors.confirmPassword && <div className="invalid-feedback">{errors.confirmPassword}</div>}
                   </div>
                 </div>

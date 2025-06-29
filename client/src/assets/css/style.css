@@ -874,35 +874,210 @@ h1, h2, h3, h4, h5, h6, p, span, div {
   }
 }
 
-/* Password Toggle Button Styles */
+/* Enhanced Password Toggle Button Styles with Attractive Effects */
 .password-toggle-btn {
   border: none !important;
   background: transparent !important;
   border-left: 1px solid #dee2e6 !important;
   border-radius: 0 !important;
   padding: 0.375rem 0.75rem;
-  transition: all 0.2s ease-in-out;
+  position: relative;
+  overflow: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+}
+
+.password-toggle-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(0, 123, 255, 0.1), transparent);
+  transition: left 0.6s ease-in-out;
 }
 
 .password-toggle-btn:hover {
   background-color: #f8f9fa !important;
   color: #495057 !important;
+  transform: scale(1.05);
+  box-shadow: 0 2px 8px rgba(0, 123, 255, 0.15);
+}
+
+.password-toggle-btn:hover::before {
+  left: 100%;
 }
 
 .password-toggle-btn:focus {
-  box-shadow: none !important;
+  box-shadow: 0 0 0 3px rgba(0, 123, 255, 0.25) !important;
   outline: none !important;
+  transform: scale(1.05);
 }
 
 .password-toggle-btn:active {
   background-color: #e9ecef !important;
+  transform: scale(0.98);
+  transition: all 0.1s ease;
+}
+
+/* Enhanced FontAwesome icon animation */
+.password-toggle-btn .fa-eye,
+.password-toggle-btn .fa-eye-slash {
+  transition: all 0.4s cubic-bezier(0.68, -0.55, 0.265, 1.55);
+  transform-origin: center;
+}
+
+.password-toggle-btn:hover .fa-eye,
+.password-toggle-btn:hover .fa-eye-slash {
+  transform: scale(1.2) rotate(10deg);
+  color: #007bff !important;
+}
+
+.password-toggle-btn:active .fa-eye,
+.password-toggle-btn:active .fa-eye-slash {
+  transform: scale(0.9) rotate(-5deg);
+}
+
+/* Pulse animation when clicked */
+.password-toggle-btn:focus .fa-eye,
+.password-toggle-btn:focus .fa-eye-slash {
+  animation: eyePulse 0.6s ease-in-out;
+}
+
+@keyframes eyePulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.3); }
+  100% { transform: scale(1.1); }
+}
+
+/* Smooth icon transition when toggling */
+.password-toggle-btn .text-muted {
+  transition: color 0.3s ease;
+}
+
+.password-toggle-btn:hover .text-muted {
+  color: #007bff !important;
 }
 
 /* Input group styling for password fields */
 .input-group .password-toggle-btn {
   z-index: 3;
+  border-top-right-radius: 0.375rem !important;
+  border-bottom-right-radius: 0.375rem !important;
 }
 
 .input-group .form-control:focus + .password-toggle-btn {
   border-color: #86b7fe;
+  box-shadow: 0 0 0 2px rgba(0, 123, 255, 0.1);
+}
+
+/* Gradient background effect on focus */
+.input-group:focus-within .password-toggle-btn {
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%) !important;
+}
+
+/* Ripple effect */
+.password-toggle-btn {
+  position: relative;
+}
+
+.password-toggle-btn::after {
+  content: '';
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  width: 0;
+  height: 0;
+  border-radius: 50%;
+  background: rgba(0, 123, 255, 0.3);
+  transform: translate(-50%, -50%);
+  transition: width 0.3s ease, height 0.3s ease;
+}
+
+.password-toggle-btn:active::after {
+  width: 120%;
+  height: 120%;
+}
+
+/* Enhanced hover glow effect */
+.password-toggle-btn:hover {
+  box-shadow: 
+    0 2px 8px rgba(0, 123, 255, 0.15),
+    0 0 20px rgba(0, 123, 255, 0.1);
+}
+
+/* Dark mode support */
+@media (prefers-color-scheme: dark) {
+  .password-toggle-btn:hover {
+    background-color: #495057 !important;
+    color: #f8f9fa !important;
+  }
+  
+  .password-toggle-btn:hover .text-muted {
+    color: #86b7fe !important;
+  }
+}
+
+/* Breathing animation for password toggle when field is focused */
+.input-group:focus-within .password-toggle-btn .fa-eye,
+.input-group:focus-within .password-toggle-btn .fa-eye-slash {
+  animation: breathe 2s ease-in-out infinite;
+}
+
+@keyframes breathe {
+  0%, 100% { 
+    transform: scale(1);
+    opacity: 0.7;
+  }
+  50% { 
+    transform: scale(1.05);
+    opacity: 1;
+  }
+}
+
+/* Enhanced visual feedback for password visibility state */
+.password-toggle-btn[data-password-visible="true"] {
+  background: linear-gradient(135deg, rgba(0, 123, 255, 0.1) 0%, rgba(0, 123, 255, 0.05) 100%) !important;
+}
+
+.password-toggle-btn[data-password-visible="true"] .fa-eye-slash {
+  color: #007bff !important;
+  text-shadow: 0 0 8px rgba(0, 123, 255, 0.3);
+}
+
+.password-toggle-btn[data-password-visible="false"] .fa-eye {
+  color: #6c757d !important;
+}
+
+/* Smooth color transition for icons */
+.password-toggle-btn .fa-eye,
+.password-toggle-btn .fa-eye-slash {
+  filter: drop-shadow(0 1px 2px rgba(0, 0, 0, 0.1));
+  transition: all 0.3s ease, filter 0.3s ease;
+}
+
+/* Enhanced focus ring */
+.password-toggle-btn:focus-visible {
+  box-shadow: 
+    0 0 0 3px rgba(0, 123, 255, 0.25),
+    0 2px 8px rgba(0, 123, 255, 0.15) !important;
+  outline: 2px solid transparent;
+  outline-offset: 2px;
+}
+
+/* Subtle entrance animation */
+.password-toggle-btn {
+  animation: fadeInScale 0.3s ease-out;
+}
+
+@keyframes fadeInScale {
+  0% {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  100% {
+    opacity: 1;
+    transform: scale(1);
+  }
 }
