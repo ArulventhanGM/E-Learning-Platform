@@ -5,12 +5,14 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "build": "echo 'No build step required for Node.js server' && exit 0",
     "dev": "nodemon server.js",
     "seed": "node seeder.js",
     "seed-quizzes": "node seedQuizzes.js",
     "setup-db": "node setupMongoDB.js",
     "security-check": "node security-check.js",
     "test-db": "node test-db-connection.js",
+    "test-simple": "node test-simple-connection.js",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "dependencies": {
