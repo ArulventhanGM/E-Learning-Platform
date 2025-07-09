@@ -156,7 +156,7 @@ function HomePage() {
               {/* Hidden: Ready To Learn badge */}
               <h1 className="display-4 fw-bold mb-4 slide-up">Unlock Your <span className="text-warning">Potential</span> With Our Courses</h1>
               <p className="lead mb-4 slide-up delay-1 opacity-75">Access a world of knowledge with our comprehensive online courses. Learn from industry experts and advance your career.</p>
-              <div className="d-flex gap-3 slide-up delay-2">
+              <div className="d-flex gap-3 slide-up delay-2 flex-column flex-sm-row">
                 <Link to="/courses" className="btn btn-light btn-lg rounded-pill hover-lift">
                   Explore Courses <FontAwesomeIcon icon={faArrowRight} className="ms-2" />
                 </Link>
@@ -165,13 +165,13 @@ function HomePage() {
                 </Link>
               </div>
               
-              <div className="mt-5 d-flex gap-4 pt-3 slide-up delay-3">
+              <div className="mt-5 d-flex gap-4 pt-3 slide-up delay-3 justify-content-center justify-content-lg-start flex-wrap">
                 <div className="d-flex align-items-center">
                   <div className="icon-circle bg-light text-primary me-2 d-flex align-items-center justify-content-center" style={{width: '40px', height: '40px', borderRadius: '50%'}}>
                     <FontAwesomeIcon icon={faGraduationCap} />
                   </div>
                   <div>
-                    <div className="fw-bold text-white">1000+</div>
+                    <div className="fw-bold text-white counter-value" data-target="1000">0</div>
                     <div className="small text-white opacity-75">Courses</div>
                   </div>
                 </div>
@@ -180,7 +180,7 @@ function HomePage() {
                     <FontAwesomeIcon icon={faUserGraduate} />
                   </div>
                   <div>
-                    <div className="fw-bold text-white">50K+</div>
+                    <div className="fw-bold text-white counter-value" data-target="50000">0</div>
                     <div className="small text-white opacity-75">Students</div>
                   </div>
                 </div>

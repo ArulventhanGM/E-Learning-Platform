@@ -107,9 +107,9 @@ function SignupPage() {
     <div className="container-fluid py-5 py-mobile-3">
       <div className="row justify-content-center">
         <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
-          <div className="card border-0 shadow-sm">
+          <div className="card border-0 shadow-sm card-responsive">
             <div className="card-body p-4 p-md-5 px-mobile-2">
-              <div className="auth-heading mb-4 text-center text-md-start">
+              <div className="auth-heading mb-4 text-mobile-center text-md-start">
                 <h1 className="fw-bold text-responsive-xl">Create Account</h1>
                 <p className="text-muted text-responsive">Join our learning community today</p>
               </div>
@@ -142,7 +142,7 @@ function SignupPage() {
               </div>
               
               {/* Signup Form */}
-              <form onSubmit={handleSubmit} className="auth-form">
+              <form onSubmit={handleSubmit} className="auth-form form-responsive">
                 <div className="mb-3 mb-mobile-2">
                   <label htmlFor="fullName" className="form-label text-responsive">Full Name</label>
                   <div className="input-group">
@@ -263,7 +263,7 @@ function SignupPage() {
                   {errors.agreeTerms && <div className="invalid-feedback">{errors.agreeTerms}</div>}
                 </div>
                 
-                <button type="submit" className="btn btn-primary w-100 mb-4 text-responsive" disabled={isLoading}>
+                <button type="submit" className="btn btn-primary w-100 mb-4 btn-responsive" disabled={isLoading}>
                   {isLoading ? 'Creating Account...' : 'Create Account'}
                 </button>
                 

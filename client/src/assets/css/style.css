@@ -1535,25 +1535,445 @@ body {
   border-radius: 2px;
 }
 
-/* Final mobile performance optimizations */
+/* ========================================
+   RESPONSIVE LAYOUT UTILITIES
+   ======================================== */
+
+/* Mobile-first container behavior */
+.container-mobile {
+  width: 100%;
+  padding: 0 15px;
+  margin: 0 auto;
+}
+
+@media (min-width: 576px) {
+  .container-mobile {
+    max-width: 540px;
+    padding: 0 20px;
+  }
+}
+
+@media (min-width: 768px) {
+  .container-mobile {
+    max-width: 720px;
+    padding: 0 25px;
+  }
+}
+
+@media (min-width: 992px) {
+  .container-mobile {
+    max-width: 960px;
+    padding: 0 30px;
+  }
+}
+
+/* Responsive spacing utilities */
 @media (max-width: 575.98px) {
-  /* Reduce unnecessary repaints */
-  * {
-    -webkit-tap-highlight-color: transparent;
+  .py-mobile-2 { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
+  .py-mobile-3 { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+  .py-mobile-4 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+  .py-mobile-5 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+  
+  .mt-mobile-2 { margin-top: 0.5rem !important; }
+  .mt-mobile-3 { margin-top: 1rem !important; }
+  .mt-mobile-4 { margin-top: 1.5rem !important; }
+  .mt-mobile-5 { margin-top: 3rem !important; }
+  
+  .mb-mobile-2 { margin-bottom: 0.5rem !important; }
+  .mb-mobile-3 { margin-bottom: 1rem !important; }
+  .mb-mobile-4 { margin-bottom: 1.5rem !important; }
+  .mb-mobile-5 { margin-bottom: 3rem !important; }
+}
+
+/* Responsive text utilities */
+.text-mobile-center {
+  text-align: center;
+}
+
+@media (min-width: 768px) {
+  .text-md-start {
+    text-align: left !important;
   }
   
-  /* Optimize scrolling */
-  body {
-    -webkit-overflow-scrolling: touch;
-    overflow-x: hidden;
+  .text-md-center {
+    text-align: center !important;
   }
   
-  /* Optimize font rendering */
-  body, .card, .btn {
-    text-rendering: optimizeSpeed;
+  .text-md-end {
+    text-align: right !important;
+  }
+}
+
+/* Responsive flexbox utilities */
+.flex-mobile-column {
+  flex-direction: column;
+}
+
+.flex-mobile-center {
+  justify-content: center;
+  align-items: center;
+}
+
+@media (min-width: 576px) {
+  .flex-sm-row {
+    flex-direction: row !important;
+  }
+  
+  .flex-sm-column {
+    flex-direction: column !important;
+  }
+}
+
+@media (min-width: 768px) {
+  .flex-md-row {
+    flex-direction: row !important;
+  }
+  
+  .flex-md-column {
+    flex-direction: column !important;
   }
 }
 
 /* ========================================
-   END OF RESPONSIVE POLISH & UTILITIES
+   RESPONSIVE COMPONENT ENHANCEMENTS
+   ======================================== */
+
+/* Enhanced button responsiveness */
+.btn-responsive {
+  padding: 12px 24px;
+  font-size: 1rem;
+  border-radius: 12px;
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 575.98px) {
+  .btn-responsive {
+    padding: 14px 28px;
+    font-size: 1.1rem;
+    width: 100%;
+    max-width: 300px;
+  }
+}
+
+/* Enhanced card responsiveness */
+.card-responsive {
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 575.98px) {
+  .card-responsive {
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .card-responsive .card-body {
+    padding: 1.25rem;
+  }
+}
+
+/* Enhanced form responsiveness */
+.form-responsive .input-group {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 575.98px) {
+  .form-responsive .form-control {
+    padding: 15px;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  .form-responsive .input-group-text {
+    padding: 15px 12px;
+  }
+  
+  .form-responsive .btn {
+    padding: 15px 20px;
+    min-height: 50px;
+  }
+}
+
+/* ========================================
+   PERFORMANCE OPTIMIZATIONS
+   ======================================== */
+
+/* Optimize animations for mobile */
+@media (max-width: 767.98px) {
+  /* Reduce complex animations on mobile */
+  .slide-up,
+  .slide-in-left,
+  .slide-in-right,
+  .fade-in,
+  .reveal,
+  .reveal-left,
+  .reveal-right {
+    animation-duration: 0.3s !important;
+    animation-fill-mode: forwards;
+  }
+  
+  /* Disable parallax and complex effects on mobile */
+  .float,
+  .parallax {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  /* Optimize hover effects for touch */
+  .hover-lift:hover {
+    transform: translateY(-3px) !important;
+  }
+  
+  /* Simplified pulse animation */
+  .pulse {
+    animation: pulse-simple 2s infinite;
+  }
+}
+
+@keyframes pulse-simple {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+/* Touch-friendly improvements */
+@media (pointer: coarse) {
+  /* Larger touch targets */
+  .btn,
+  .nav-link,
+  .form-control {
+    min-height: 44px;
+  }
+  
+  /* Improved touch feedback */
+  .btn:active {
+    transform: scale(0.98);
+  }
+  
+  .nav-link:active {
+    background-color: rgba(0, 123, 255, 0.1);
+  }
+}
+
+/* ========================================
+   ACCESSIBILITY ENHANCEMENTS
+   ======================================== */
+
+/* Enhanced focus states for mobile */
+@media (max-width: 767.98px) {
+  .btn:focus,
+  .form-control:focus,
+  .nav-link:focus {
+    outline: 3px solid rgba(0, 123, 255, 0.5) !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* Skip navigation for keyboard users */
+.skip-nav {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #007bff;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 10000;
+  transition: top 0.3s;
+}
+
+.skip-nav:focus {
+  top: 6px;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* ========================================
+   FINAL MOBILE LAYOUT PERFECTION
+   ======================================== */
+
+/* Ensure no horizontal overflow */
+html, body {
+  overflow-x: hidden;
+  width: 100%;
+}
+
+/* Mobile viewport adjustments */
+@media (max-width: 575.98px) {
+  body {
+    font-size: 14px;
+    line-height: 1.6;
+  }
+  
+  /* Optimize container padding */
+  .container,
+  .container-fluid {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+  
+  /* Hero section mobile perfection */
+  .hero-section {
+    padding: 80px 0 60px !important;
+    min-height: auto;
+  }
+  
+  .hero-section .container {
+    padding: 0 20px;
+  }
+  
+  /* Perfect mobile hero text sizing */
+  .hero-section h1 {
+    font-size: clamp(1.75rem, 8vw, 2.5rem) !important;
+    line-height: 1.2 !important;
+    margin-bottom: 1rem !important;
+  }
+  
+  .hero-section .lead {
+    font-size: clamp(0.95rem, 4vw, 1.1rem) !important;
+    line-height: 1.5 !important;
+    margin-bottom: 1.5rem !important;
+  }
+  
+  /* Perfect button layout */
+  .hero-section .btn {
+    padding: 14px 28px;
+    font-size: 1rem;
+    min-height: 50px;
+    border-radius: 25px;
+  }
+  
+  /* Perfect stats layout */
+  .hero-section .d-flex.gap-4 {
+    gap: 0.75rem !important;
+    margin-top: 2rem !important;
+  }
+  
+  .hero-section .d-flex.gap-4 > div {
+    padding: 8px 12px;
+    font-size: 0.85rem;
+  }
+  
+  .hero-section .icon-circle {
+    width: 32px !important;
+    height: 32px !important;
+    font-size: 0.9rem;
+  }
+}
+
+/* Tablet landscape optimizations */
+@media (min-width: 768px) and (max-width: 991.98px) and (orientation: landscape) {
+  .hero-section {
+    padding: 60px 0 !important;
+  }
+  
+  .hero-section .display-4 {
+    font-size: 2.5rem !important;
+  }
+  
+  .hero-section .lead {
+    font-size: 1.1rem !important;
+  }
+}
+
+/* Perfect card shadows and borders */
+@media (max-width: 767.98px) {
+  .card {
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08) !important;
+    border: none !important;
+  }
+  
+  .shadow-sm {
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.06) !important;
+  }
+  
+  .shadow-lg {
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12) !important;
+  }
+}
+
+/* Perfect form elements */
+@media (max-width: 575.98px) {
+  .input-group {
+    margin-bottom: 1rem;
+  }
+  
+  .form-control {
+    border-radius: 12px;
+    border: 1px solid #e0e0e0;
+    font-size: 16px !important; /* Prevent iOS zoom */
+    padding: 14px 16px;
+  }
+  
+  .input-group-text {
+    border-radius: 12px 0 0 12px;
+    background: #f8f9fa;
+    border: 1px solid #e0e0e0;
+    border-right: none;
+    padding: 14px 12px;
+  }
+  
+  .password-toggle-btn {
+    border-radius: 0 12px 12px 0;
+    border: 1px solid #e0e0e0;
+    border-left: none;
+    padding: 14px 16px !important;
+    background: #f8f9fa;
+  }
+}
+
+/* Perfect navbar mobile */
+@media (max-width: 991.98px) {
+  .navbar {
+    padding: 0.75rem 0;
+  }
+  
+  .navbar-brand {
+    font-size: 1.4rem;
+  }
+  
+  .navbar-toggler {
+    padding: 6px 8px;
+    margin-left: auto;
+  }
+}
+
+/* Perfect social buttons */
+@media (max-width: 575.98px) {
+  .social-buttons-row .btn {
+    padding: 12px;
+    font-size: 0.9rem;
+  }
+  
+  .social-buttons-row .btn .fa-facebook-f,
+  .social-buttons-row .btn .fa-apple {
+    font-size: 1.1rem;
+  }
+}
+
+/* Perfect spacing for all mobile elements */
+@media (max-width: 575.98px) {
+  .mb-3 { margin-bottom: 1rem !important; }
+  .mb-4 { margin-bottom: 1.5rem !important; }
+  .mt-5 { margin-top: 2rem !important; }
+  .py-5 { padding: 2rem 0 !important; }
+  
+  .gap-2 { gap: 0.5rem !important; }
+  .gap-3 { gap: 0.75rem !important; }
+  .gap-4 { gap: 1rem !important; }
+}
+
+/* ========================================
+   END OF MOBILE LAYOUT PERFECTION
    ======================================== */
