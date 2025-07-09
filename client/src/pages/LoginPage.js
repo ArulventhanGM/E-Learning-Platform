@@ -86,14 +86,14 @@ function LoginPage() {
   };
 
   return (
-    <div className="container py-5">
+    <div className="container-fluid py-5 py-mobile-3">
       <div className="row justify-content-center">
-        <div className="col-md-8 col-lg-6 col-xl-5">
+        <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
           <div className="card border-0 shadow-sm">
-            <div className="card-body p-4 p-md-5">
-              <div className="auth-heading mb-4">
-                <h1 className="fw-bold">Welcome Back!</h1>
-                <p className="text-muted">Login to continue learning</p>
+            <div className="card-body p-4 p-md-5 px-mobile-2">
+              <div className="auth-heading mb-4 text-center text-md-start">
+                <h1 className="fw-bold text-responsive-xl">Welcome Back!</h1>
+                <p className="text-muted text-responsive">Login to continue learning</p>
               </div>
               
               {/* Social Login Options */}
@@ -101,16 +101,17 @@ function LoginPage() {
                 <div className="d-grid gap-2 mb-3">
                   <button className="btn btn-outline-secondary">
                     <FontAwesomeIcon icon={faGoogle} className="me-2" />
-                    Continue with Google
+                    <span className="d-none d-sm-inline">Continue with </span>Google
                   </button>
                 </div>
-                <div className="d-flex gap-2">
-                  <button className="btn btn-outline-secondary w-50">
-                    <FontAwesomeIcon icon={faFacebookF} className="me-2" />
-                    Facebook
+                <div className="d-flex gap-2 social-buttons-row">
+                  <button className="btn btn-outline-secondary flex-fill">
+                    <FontAwesomeIcon icon={faFacebookF} className="me-1 me-sm-2" />
+                    <span className="d-none d-md-inline">Facebook</span>
+                    <span className="d-md-none">FB</span>
                   </button>
-                  <button className="btn btn-outline-secondary w-50">
-                    <FontAwesomeIcon icon={faApple} className="me-2" />
+                  <button className="btn btn-outline-secondary flex-fill">
+                    <FontAwesomeIcon icon={faApple} className="me-1 me-sm-2" />
                     Apple
                   </button>
                 </div>
@@ -124,8 +125,8 @@ function LoginPage() {
               
               {/* Login Form */}
               <form onSubmit={handleSubmit} className="auth-form">
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">Email</label>
+                <div className="mb-3 mb-mobile-2">
+                  <label htmlFor="email" className="form-label text-responsive">Email</label>
                   <div className="input-group">
                     <span className="input-group-text bg-light">
                       <FontAwesomeIcon icon={faEnvelope} />
@@ -144,9 +145,9 @@ function LoginPage() {
                   </div>
                 </div>
                 
-                <div className="mb-3">
-                  <div className="d-flex justify-content-between">
-                    <label htmlFor="password" className="form-label">Password</label>
+                <div className="mb-3 mb-mobile-2">
+                  <div className="d-flex justify-content-between align-items-center mb-2">
+                    <label htmlFor="password" className="form-label text-responsive mb-0">Password</label>
                     <Link to="/forgot-password" className="small text-decoration-none">Forgot password?</Link>
                   </div>
                   <div className="input-group">

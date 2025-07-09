@@ -104,14 +104,14 @@ function SignupPage() {
   };
 
   return (
-    <div className="container py-5">
+    <div className="container-fluid py-5 py-mobile-3">
       <div className="row justify-content-center">
-        <div className="col-md-8 col-lg-6 col-xl-5">
+        <div className="col-12 col-sm-10 col-md-8 col-lg-6 col-xl-5 col-xxl-4">
           <div className="card border-0 shadow-sm">
-            <div className="card-body p-4 p-md-5">
-              <div className="auth-heading mb-4">
-                <h1 className="fw-bold">Create Account</h1>
-                <p className="text-muted">Join our learning community today</p>
+            <div className="card-body p-4 p-md-5 px-mobile-2">
+              <div className="auth-heading mb-4 text-center text-md-start">
+                <h1 className="fw-bold text-responsive-xl">Create Account</h1>
+                <p className="text-muted text-responsive">Join our learning community today</p>
               </div>
               
               {/* Social Signup Options */}
@@ -119,16 +119,17 @@ function SignupPage() {
                 <div className="d-grid gap-2 mb-3">
                   <button className="btn btn-outline-secondary">
                     <FontAwesomeIcon icon={faGoogle} className="me-2" />
-                    Sign up with Google
+                    <span className="d-none d-sm-inline">Sign up with </span>Google
                   </button>
                 </div>
-                <div className="d-flex gap-2">
-                  <button className="btn btn-outline-secondary w-50">
-                    <FontAwesomeIcon icon={faFacebookF} className="me-2" />
-                    Facebook
+                <div className="d-flex gap-2 social-buttons-row">
+                  <button className="btn btn-outline-secondary flex-fill">
+                    <FontAwesomeIcon icon={faFacebookF} className="me-1 me-sm-2" />
+                    <span className="d-none d-md-inline">Facebook</span>
+                    <span className="d-md-none">FB</span>
                   </button>
-                  <button className="btn btn-outline-secondary w-50">
-                    <FontAwesomeIcon icon={faApple} className="me-2" />
+                  <button className="btn btn-outline-secondary flex-fill">
+                    <FontAwesomeIcon icon={faApple} className="me-1 me-sm-2" />
                     Apple
                   </button>
                 </div>
@@ -142,8 +143,8 @@ function SignupPage() {
               
               {/* Signup Form */}
               <form onSubmit={handleSubmit} className="auth-form">
-                <div className="mb-3">
-                  <label htmlFor="fullName" className="form-label">Full Name</label>
+                <div className="mb-3 mb-mobile-2">
+                  <label htmlFor="fullName" className="form-label text-responsive">Full Name</label>
                   <div className="input-group">
                     <span className="input-group-text bg-light">
                       <FontAwesomeIcon icon={faUser} />
@@ -162,8 +163,8 @@ function SignupPage() {
                   </div>
                 </div>
                 
-                <div className="mb-3">
-                  <label htmlFor="email" className="form-label">Email</label>
+                <div className="mb-3 mb-mobile-2">
+                  <label htmlFor="email" className="form-label text-responsive">Email</label>
                   <div className="input-group">
                     <span className="input-group-text bg-light">
                       <FontAwesomeIcon icon={faEnvelope} />
@@ -182,8 +183,8 @@ function SignupPage() {
                   </div>
                 </div>
                 
-                <div className="mb-3">
-                  <label htmlFor="password" className="form-label">Password</label>
+                <div className="mb-3 mb-mobile-2">
+                  <label htmlFor="password" className="form-label text-responsive">Password</label>
                   <div className="input-group">
                     <span className="input-group-text bg-light">
                       <FontAwesomeIcon icon={faLock} />
@@ -212,11 +213,11 @@ function SignupPage() {
                     </button>
                     {errors.password && <div className="invalid-feedback">{errors.password}</div>}
                   </div>
-                  <small className="form-text text-muted">Must be at least 8 characters long</small>
+                  <small className="form-text text-muted text-responsive">Must be at least 8 characters long</small>
                 </div>
                 
-                <div className="mb-3">
-                  <label htmlFor="confirmPassword" className="form-label">Confirm Password</label>
+                <div className="mb-3 mb-mobile-2">
+                  <label htmlFor="confirmPassword" className="form-label text-responsive">Confirm Password</label>
                   <div className="input-group">
                     <span className="input-group-text bg-light">
                       <FontAwesomeIcon icon={faLock} />
@@ -256,20 +257,20 @@ function SignupPage() {
                     checked={formData.agreeTerms}
                     onChange={handleChange}
                   />
-                  <label className="form-check-label" htmlFor="agreeTerms">
+                  <label className="form-check-label text-responsive" htmlFor="agreeTerms">
                     I agree to the <Link to="/terms" className="text-decoration-none">Terms of Service</Link> and <Link to="/privacy" className="text-decoration-none">Privacy Policy</Link>
                   </label>
                   {errors.agreeTerms && <div className="invalid-feedback">{errors.agreeTerms}</div>}
                 </div>
                 
-                <button type="submit" className="btn btn-primary w-100 mb-4" disabled={isLoading}>
+                <button type="submit" className="btn btn-primary w-100 mb-4 text-responsive" disabled={isLoading}>
                   {isLoading ? 'Creating Account...' : 'Create Account'}
                 </button>
                 
                 <div className="text-center">
-                  <p>Already have an account? <Link to="/login" className="text-decoration-none">Log In</Link></p>
+                  <p className="text-responsive">Already have an account? <Link to="/login" className="text-decoration-none">Log In</Link></p>
                 </div>
-                {errors.general && <div className="alert alert-danger">{errors.general}</div>}
+                {errors.general && <div className="alert alert-danger text-responsive">{errors.general}</div>}
               </form>
             </div>
           </div>
