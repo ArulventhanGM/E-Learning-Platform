@@ -336,13 +336,13 @@ const CourseCard = ({ course, featured = false }) => {
             )}
           </div>
           <div className="d-flex align-items-center rating-container">
-            <div className="rating-stars me-2">
+            <div className="rating-stars d-flex align-items-center me-2">
               {[1, 2, 3, 4, 5].map((star) => (
                 <FontAwesomeIcon
                   key={star}
                   icon={faStar}
                   className={star <= Math.round(courseData.rating || 0) ? "text-warning star-filled" : "text-muted opacity-25"}
-                  style={{ fontSize: '13px', marginRight: '1px' }}
+                  style={{ fontSize: '13px' }}
                 />
               ))}
             </div>
@@ -545,12 +545,6 @@ const CourseCard = ({ course, featured = false }) => {
         .price-badge .badge {
           font-size: 0.8rem;
           letter-spacing: 0.5px;
-        }
-
-        .rating-container {
-          background: rgba(255, 193, 7, 0.1);
-          padding: 4px 8px;
-          border-radius: 8px;
         }
 
         .star-filled {

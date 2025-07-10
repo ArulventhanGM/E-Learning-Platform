@@ -1,0 +1,189 @@
+/* ========================================
+   CARD COMPONENTS
+   ======================================== */
+
+/* Course Card Styles - Enhanced */
+.course-card {
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  border-radius: 16px !important;
+  border: 1px solid rgba(0,0,0,0.08) !important;
+  overflow: hidden;
+}
+
+.course-card:hover {
+  transform: translateY(-8px);
+  box-shadow: 0 20px 40px rgba(0, 0, 0, 0.12) !important;
+}
+
+.course-card .card-img-top {
+  transition: transform 0.5s ease;
+}
+
+.course-card:hover .card-img-top {
+  transform: scale(1.05);
+}
+
+/* Course Badge */
+.course-badge {
+  z-index: 5;
+}
+
+/* Star Rating Styles */
+.rating-container {
+  display: flex !important;
+  align-items: center !important;
+  gap: 0.5rem;
+  background: rgba(255, 193, 7, 0.1);
+  padding: 4px 8px;
+  border-radius: 8px;
+}
+
+.rating-stars {
+  display: flex !important;
+  align-items: center !important;
+  gap: 1px;
+  flex-direction: row !important;
+}
+
+.rating-stars .fa-star {
+  display: inline-block !important;
+  margin-right: 1px !important;
+  vertical-align: baseline !important;
+}
+
+.star-filled {
+  filter: drop-shadow(0 1px 2px rgba(255, 193, 7, 0.3));
+}
+
+/* Ensure rating text stays inline */
+.rating-container span {
+  white-space: nowrap;
+  line-height: 1;
+}
+
+/* Instructor Image */
+.instructor-img {
+  width: 25px;
+  height: 25px;
+  object-fit: cover;
+}
+
+/* Enhanced card responsiveness */
+.card-responsive {
+  border-radius: 15px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+@media (max-width: 575.98px) {
+  .card-responsive {
+    border-radius: 12px;
+    margin-bottom: 1.5rem;
+  }
+  
+  .card-responsive .card-body {
+    padding: 1.25rem;
+  }
+  
+  /* Mobile star rating adjustments */
+  .rating-container {
+    flex-wrap: nowrap !important;
+    justify-content: flex-start !important;
+  }
+  
+  .rating-stars {
+    flex-shrink: 0 !important;
+  }
+  
+  .rating-stars .fa-star {
+    font-size: 12px !important;
+  }
+}
+
+/* About Us page specific card styles */
+.about-us-page .team-member-card {
+  transition: all 0.3s ease;
+}
+
+.about-us-page .team-member-card:hover {
+  transform: translateY(-10px);
+}
+
+.about-us-page .team-member-card img {
+  transition: transform 0.3s ease;
+}
+
+.about-us-page .team-member-card:hover img {
+  transform: scale(1.05);
+}
+
+/* User info card in mobile menu */
+.user-info {
+  display: flex;
+  align-items: center;
+  margin-bottom: 20px;
+  padding: 18px;
+  background: white;
+  border-radius: 16px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
+  transition: all 0.3s ease;
+}
+
+.user-info:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 767.98px) {
+  /* Reduce complex shadows and effects on mobile */
+  .card {
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1) !important;
+  }
+  
+  /* Optimize transforms for better performance */
+  .course-card,
+  .card-responsive {
+    will-change: transform;
+    backface-visibility: hidden;
+  }
+  
+  .course-card:hover {
+    transform: translateY(-4px);
+  }
+}
+
+/* Touch device optimizations */
+@media (hover: none) and (pointer: coarse) {
+  .course-card:hover {
+    transform: none;
+  }
+}
+
+/* Responsive image containers */
+.img-responsive-container {
+  position: relative;
+  width: 100%;
+  overflow: hidden;
+}
+
+.img-responsive-16-9 {
+  aspect-ratio: 16 / 9;
+}
+
+.img-responsive-4-3 {
+  aspect-ratio: 4 / 3;
+}
+
+.img-responsive-1-1 {
+  aspect-ratio: 1 / 1;
+}
+
+.img-responsive-container img {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

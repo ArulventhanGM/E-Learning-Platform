@@ -1,0 +1,65 @@
+/* ========================================
+   COURSES PAGE STYLES
+   ======================================== */
+
+/* Course Filter Sidebar - Enhanced */
+.filters {
+  max-height: calc(100vh - 140px);
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(var(--bs-primary-rgb), 0.3) transparent;
+}
+
+.filters::-webkit-scrollbar {
+  width: 6px;
+}
+
+.filters::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.filters::-webkit-scrollbar-thumb {
+  background: rgba(var(--bs-primary-rgb), 0.3);
+  border-radius: 3px;
+}
+
+.filters::-webkit-scrollbar-thumb:hover {
+  background: rgba(var(--bs-primary-rgb), 0.5);
+}
+
+/* Course Details Page */
+.course-header {
+  background-color: #f8f9fa;
+  padding: 3rem 0;
+}
+
+.video-container {
+  position: relative;
+  padding-bottom: 56.25%;
+  height: 0;
+  overflow: hidden;
+}
+
+.video-container iframe {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+}
+
+/* Courses Page Specific Fixes */
+.courses-page .display-4 {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.courses-page .slide-up {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.courses-page .reveal {
+  opacity: 1 !important;
+  visibility: visible !important;
+}

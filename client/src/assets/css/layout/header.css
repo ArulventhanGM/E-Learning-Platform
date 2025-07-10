@@ -1,0 +1,63 @@
+/* ========================================
+   HEADER LAYOUT STYLES
+   ======================================== */
+
+/* Header & Navigation */
+.navbar {
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar .nav-link {
+  transition: color 0.3s ease-in-out;
+  font-weight: 500;
+}
+
+.navbar .nav-link:hover {
+  transform: translateY(-1px);
+}
+
+.navbar .nav-link.text-dark:hover {
+  color: #007bff !important;
+}
+
+.navbar .nav-link.text-white:hover {
+  color: #f8f9fa !important;
+}
+
+/* Search form styles */
+.search-form.active {
+  width: 250px !important;
+}
+
+@media (max-width: 576px) {
+  .search-form.active {
+    width: 200px !important;
+  }
+}
+
+/* Navbar responsive styles */
+@media (max-width: 768px) {
+  .navbar-nav {
+    text-align: center;
+  }
+
+  .navbar-nav .nav-item {
+    margin: 0.5rem 0;
+  }
+
+  .login-buttons {
+    flex-direction: column;
+    gap: 0.5rem !important;
+  }
+
+  .login-buttons .btn {
+    width: 100%;
+  }
+}
+
+@media (max-width: 576px) {
+  .navbar .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+}

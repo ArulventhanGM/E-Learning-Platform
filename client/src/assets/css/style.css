@@ -1,4 +1,8 @@
-need /* Main Styles for LearnHub E-Learning Platform */
+/* Main Styles for LearnHub E-Learning Platform - DEPRECATED
+   This file is being replaced by the modular CSS system in main.css
+   Please use main.css instead of this file for new development
+   This file is kept temporarily for backward compatibility
+   */
 
 /* Global Styles */
 body {
@@ -2013,12 +2017,17 @@ body {
   background: rgba(0, 0, 0, 0.4);
   z-index: 1040;
   opacity: 0;
-  animation: fadeIn 0.3s ease-out forwards;
+  visibility: hidden;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   cursor: pointer;
+  animation: fadeInOverlay 0.3s ease-out forwards;
 }
 
-@keyframes fadeIn {
-  to { opacity: 1; }
+@keyframes fadeInOverlay {
+  to { 
+    opacity: 1; 
+    visibility: visible;
+  }
 }
 
 /* Custom Hamburger Icon */
@@ -2083,13 +2092,17 @@ body {
   background: #ffffff;
   z-index: 1050;
   transform: translateX(100%);
-  transition: transform 0.4s cubic-bezier(0.4, 0, 0.2, 1);
+  opacity: 0;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
   box-shadow: -8px 0 32px rgba(0, 0, 0, 0.15);
   overflow: hidden;
+  visibility: hidden;
 }
 
 .mobile-menu.show {
   transform: translateX(0);
+  opacity: 1;
+  visibility: visible;
 }
 
 .mobile-menu-container {
@@ -2168,7 +2181,7 @@ body {
   padding: 0;
   color: #333;
   text-decoration: none;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   position: relative;
   overflow: hidden;
   opacity: 0;
@@ -2182,7 +2195,7 @@ body {
   align-items: center;
   justify-content: space-between;
   padding: 20px 25px;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-link-left {
@@ -2195,19 +2208,19 @@ body {
   width: 24px;
   font-size: 1.2rem;
   color: #666;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-text {
   font-weight: 500;
   font-size: 1.1rem;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
 }
 
 .nav-arrow {
   font-size: 0.9rem;
   color: #999;
-  transition: all 0.3s ease;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
   opacity: 0;
 }
 
@@ -2262,6 +2275,102 @@ body {
   width: 4px;
   height: 100%;
   background: #ffc107;
+}
+
+/* Theme Toggle Section */
+.mobile-theme-toggle {
+  padding: 20px 25px;
+  border-top: 1px solid rgba(0, 0, 0, 0.05);
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+  margin: 10px 0;
+  opacity: 0;
+  transform: translateX(30px);
+  animation: slideInRight 0.5s ease-out forwards;
+}
+
+.theme-section-header {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  margin-bottom: 15px;
+  padding-bottom: 10px;
+  border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+}
+
+.theme-icon {
+  font-size: 1.2rem;
+  color: #666;
+}
+
+.theme-text {
+  font-weight: 600;
+  font-size: 1.1rem;
+  color: #333;
+}
+
+.theme-buttons {
+  display: flex;
+  gap: 10px;
+}
+
+.theme-btn {
+  flex: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  padding: 12px 16px;
+  border: 2px solid #e9ecef;
+  background: transparent;
+  border-radius: 12px;
+  font-weight: 500;
+  color: #666;
+  transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+  cursor: pointer;
+  position: relative;
+  overflow: hidden;
+}
+
+.theme-btn::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  left: -100%;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.5s ease;
+}
+
+.theme-btn:hover::before {
+  left: 100%;
+}
+
+.theme-btn:hover {
+  border-color: #007bff;
+  color: #007bff;
+  transform: translateY(-2px);
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.2);
+}
+
+.theme-btn.active {
+  border-color: #007bff;
+  background: linear-gradient(135deg, #007bff, #0056b3);
+  color: white;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3);
+}
+
+.theme-btn svg {
+  font-size: 1.1rem;
+  transition: all 0.3s ease;
+}
+
+.theme-btn:hover svg {
+  transform: scale(1.1);
+}
+
+.theme-btn.active svg {
+  transform: scale(1.1);
 }
 
 /* Mobile Menu Footer */
@@ -2347,59 +2456,157 @@ body {
   gap: 16px;
   opacity: 0;
   animation: fadeInUp 0.6s ease-out 0.3s forwards;
-}
-
-.auth-buttons .btn {
-  padding: 16px 25px;
-  font-size: 1.1rem;
-  font-weight: 600;
-  border-radius: 14px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  transition: all 0.3s ease;
+  padding: 0;
   position: relative;
-  overflow: hidden;
 }
 
-.auth-buttons .btn::before {
+.mobile-auth-btn {
+  padding: 16px 25px !important;
+  font-size: 1.1rem !important;
+  font-weight: 600 !important;
+  border-radius: 14px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1) !important;
+  position: relative !important;
+  overflow: hidden !important;
+  border-width: 2px !important;
+  text-decoration: none !important;
+  min-height: 56px !important;
+  cursor: pointer !important;
+}
+
+/* Glowing Animation Base */
+.mobile-auth-btn::before {
   content: '';
   position: absolute;
   top: 0;
   left: -100%;
   width: 100%;
   height: 100%;
-  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.2), transparent);
-  transition: left 0.5s ease;
+  background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.3), transparent);
+  transition: left 0.6s ease;
 }
 
-.auth-buttons .btn:hover::before {
+.mobile-auth-btn:hover::before {
   left: 100%;
 }
 
-.auth-buttons .btn-outline-primary {
-  border: 2px solid #007bff;
-  color: #007bff;
-  background: transparent;
+/* Login Button - Outline with Glow */
+.login-btn {
+  border: 2px solid #007bff !important;
+  color: #007bff !important;
+  background: rgba(0, 123, 255, 0.02) !important;
+  box-shadow: 0 0 0 rgba(0, 123, 255, 0) !important;
+  animation: loginGlow 2.5s ease-in-out infinite !important;
 }
 
-.auth-buttons .btn-outline-primary:hover {
-  background: #007bff;
-  color: white;
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.3);
+.login-btn:hover {
+  background: #007bff !important;
+  color: white !important;
+  transform: translateY(-3px) !important;
+  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4) !important;
+  border-color: #007bff !important;
 }
 
-.auth-buttons .btn-primary {
-  background: linear-gradient(135deg, #007bff, #0056b3);
-  border: none;
-  color: white;
+.login-btn:active {
+  transform: translateY(-1px) !important;
 }
 
-.auth-buttons .btn-primary:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 8px 25px rgba(0, 123, 255, 0.4);
-  background: linear-gradient(135deg, #0056b3, #004085);
+/* Sign Up Button - Primary with Enhanced Glow */
+.signup-btn {
+  background: linear-gradient(135deg, #007bff, #0056b3) !important;
+  border: 2px solid transparent !important;
+  color: white !important;
+  box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3) !important;
+  animation: signupGlow 2s ease-in-out infinite !important;
+}
+
+.signup-btn:hover {
+  transform: translateY(-3px) !important;
+  box-shadow: 0 12px 35px rgba(0, 123, 255, 0.5) !important;
+  background: linear-gradient(135deg, #0056b3, #004085) !important;
+  filter: brightness(1.1) !important;
+}
+
+.signup-btn:active {
+  transform: translateY(-1px) !important;
+}
+
+/* Glowing Keyframes */
+@keyframes loginGlow {
+  0%, 100% {
+    box-shadow: 0 0 5px rgba(0, 123, 255, 0.3), 0 0 10px rgba(0, 123, 255, 0.2), 0 0 15px rgba(0, 123, 255, 0.1);
+  }
+  50% {
+    box-shadow: 0 0 10px rgba(0, 123, 255, 0.5), 0 0 20px rgba(0, 123, 255, 0.3), 0 0 30px rgba(0, 123, 255, 0.2);
+  }
+}
+
+@keyframes signupGlow {
+  0%, 100% {
+    box-shadow: 0 4px 15px rgba(0, 123, 255, 0.3), 0 0 20px rgba(0, 123, 255, 0.2);
+  }
+  50% {
+    box-shadow: 0 6px 25px rgba(0, 123, 255, 0.5), 0 0 30px rgba(0, 123, 255, 0.3);
+  }
+}
+
+/* Enhanced responsiveness for auth buttons */
+@media (max-width: 400px) {
+  .mobile-auth-btn {
+    padding: 14px 20px !important;
+    font-size: 1rem !important;
+    min-height: 52px !important;
+  }
+}
+
+@media (max-width: 350px) {
+  .mobile-auth-btn {
+    padding: 12px 18px !important;
+    font-size: 0.95rem !important;
+    min-height: 48px !important;
+  }
+  
+  .auth-buttons {
+    gap: 12px;
+  }
+  
+  .theme-btn {
+    padding: 10px 12px;
+    font-size: 0.95rem;
+  }
+  
+  .theme-section-header {
+    margin-bottom: 12px;
+  }
+  
+  .theme-buttons {
+    gap: 8px;
+  }
+}
+
+/* Focus states for better accessibility */
+.mobile-auth-btn:focus {
+  outline: 2px solid #007bff !important;
+  outline-offset: 2px !important;
+}
+
+.theme-btn:focus {
+  outline: 2px solid #007bff;
+  outline-offset: 2px;
+}
+
+/* Enhanced performance for older devices */
+.mobile-menu,
+.mobile-menu-overlay,
+.mobile-nav-link,
+.mobile-auth-btn,
+.theme-btn {
+  will-change: transform, opacity;
+  backface-visibility: hidden;
+  perspective: 1000px;
 }
 
 @keyframes fadeInUp {

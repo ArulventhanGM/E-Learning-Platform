@@ -1,0 +1,200 @@
+/* ========================================
+   FORM COMPONENTS
+   ======================================== */
+
+/* Enhanced form responsiveness */
+.form-responsive .input-group {
+  border-radius: 12px;
+  overflow: hidden;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.05);
+}
+
+@media (max-width: 575.98px) {
+  .form-responsive .form-control {
+    padding: 15px;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+  
+  .form-responsive .input-group-text {
+    padding: 15px 12px;
+  }
+  
+  .form-responsive .btn {
+    padding: 15px 20px;
+    min-height: 50px;
+  }
+}
+
+/* Auth forms responsive design */
+.auth-form {
+  max-width: 440px;
+  margin: 0 auto;
+}
+
+.auth-heading {
+  text-align: center;
+  margin-bottom: 2rem;
+}
+
+/* Contact form enhancements */
+.contact-us-page .form-control:focus,
+.contact-us-page .form-select:focus {
+  border-color: #0d6efd;
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+.contact-us-page .btn-primary {
+  background: linear-gradient(135deg, #0d6efd 0%, #0a58ca 100%);
+  border: none;
+  transition: all 0.3s ease;
+}
+
+.contact-us-page .btn-primary:hover {
+  background: linear-gradient(135deg, #0a58ca 0%, #084298 100%);
+  transform: translateY(-2px);
+  box-shadow: 0 5px 15px rgba(13, 110, 253, 0.4);
+}
+
+/* Flexible input groups */
+.input-group {
+  display: flex;
+  width: 100%;
+  flex-wrap: nowrap;
+}
+
+.input-group .form-control {
+  flex: 1;
+  min-width: 0; /* Allows shrinking */
+}
+
+.input-group-text {
+  flex-shrink: 0;
+  white-space: nowrap;
+}
+
+/* Responsive password toggle */
+.password-toggle-btn {
+  flex-shrink: 0;
+  white-space: nowrap;
+  transition: all 0.3s ease;
+}
+
+/* Form validation responsive */
+.invalid-feedback {
+  font-size: clamp(12px, 2vw, 14px);
+  margin-top: 5px;
+}
+
+/* Touch-friendly form elements */
+@media (pointer: coarse) {
+  .form-control {
+    min-height: 48px;
+    padding: 12px 16px;
+    font-size: 16px; /* Prevent zoom on iOS */
+  }
+}
+
+/* Responsive form layout */
+@media (max-width: 575.98px) {
+  /* Auth forms on mobile */
+  .card {
+    margin: 10px 0;
+    border-radius: 0 !important;
+    box-shadow: none !important;
+    border: none !important;
+  }
+  
+  .card-body {
+    padding: 20px 15px !important;
+  }
+  
+  /* Form elements */
+  .form-control {
+    font-size: 16px; /* Prevent zoom on iOS */
+    padding: 12px 15px;
+  }
+  
+  .btn {
+    padding: 12px 20px;
+    font-size: 16px;
+    min-height: 48px; /* Touch target size */
+  }
+  
+  /* Input groups */
+  .input-group-text {
+    padding: 12px 10px;
+    font-size: 14px;
+  }
+  
+  /* Social login buttons */
+  .btn-outline-secondary {
+    font-size: 14px;
+    padding: 10px 15px;
+  }
+  
+  /* Spacing adjustments */
+  .mb-3 {
+    margin-bottom: 20px !important;
+  }
+  
+  .mb-4 {
+    margin-bottom: 25px !important;
+  }
+  
+  .py-5 {
+    padding-top: 20px !important;
+    padding-bottom: 20px !important;
+  }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+  .card {
+    margin: 20px 10px;
+  }
+  
+  .card-body {
+    padding: 30px 25px !important;
+  }
+  
+  .btn {
+    min-height: 44px;
+  }
+  
+  .password-toggle-btn {
+    min-width: 44px;
+    min-height: 44px;
+  }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+  .card {
+    margin: 30px 0;
+  }
+  
+  .card-body {
+    padding: 40px 35px !important;
+  }
+  
+  /* Two-column layout for social buttons */
+  .social-buttons-row {
+    display: flex;
+    gap: 10px;
+  }
+  
+  .social-buttons-row .btn {
+    flex: 1;
+  }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+  .card {
+    margin: 40px 0;
+  }
+  
+  .card-body {
+    padding: 50px 45px !important;
+  }
+}

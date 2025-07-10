@@ -1,0 +1,295 @@
+/* ========================================
+   ANIMATION COMPONENTS
+   ======================================== */
+
+/* Animation keyframes for About Us and Contact Us pages */
+@keyframes gradientAnimation {
+  0% { transform: translateX(0) translateY(0); }
+  100% { transform: translateX(-50px) translateY(-50px); }
+}
+
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(-30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateX(0);
+  }
+}
+
+@keyframes float {
+  0%, 100% { transform: translateY(0px); }
+  50% { transform: translateY(-10px); }
+}
+
+@keyframes scaleIn {
+  from {
+    opacity: 0;
+    transform: scale(0.8);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1);
+  }
+}
+
+/* User Profile Dropdown Animation */
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+/* Animation classes */
+.reveal-on-scroll {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+
+.reveal-on-scroll.animate-reveal {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+.reveal-left {
+  animation: fadeInLeft 0.8s ease-out;
+}
+
+.reveal-right {
+  animation: fadeInRight 0.8s ease-out;
+}
+
+.slide-up {
+  animation: fadeInUp 0.8s ease-out;
+}
+
+.slide-up.delay-1 {
+  animation-delay: 0.2s;
+  animation-fill-mode: both;
+}
+
+.slide-up.delay-2 {
+  animation-delay: 0.4s;
+  animation-fill-mode: both;
+}
+
+.slide-in-left {
+  animation: fadeInLeft 0.6s ease-out;
+  animation-fill-mode: both;
+  opacity: 1; /* Ensure elements are visible by default */
+}
+
+.slide-in-right {
+  animation: fadeInRight 0.6s ease-out;
+  animation-fill-mode: both;
+  opacity: 1; /* Ensure elements are visible by default */
+}
+
+.fade-in {
+  animation: fadeInUp 0.6s ease-out;
+  animation-fill-mode: both;
+  opacity: 1; /* Ensure elements are visible by default */
+}
+
+.scale-in {
+  animation: scaleIn 0.3s ease-out;
+}
+
+.animate-float {
+  animation: float 3s ease-in-out infinite;
+}
+
+/* Optimized animations for mobile */
+@media (max-width: 767.98px) {
+  .slide-up,
+  .slide-in-left,
+  .slide-in-right,
+  .reveal-left,
+  .reveal-right {
+    animation-duration: 0.4s !important;
+    animation-timing-function: ease-out !important;
+  }
+  
+  .delay-1 {
+    animation-delay: 0.1s !important;
+  }
+  
+  .delay-2 {
+    animation-delay: 0.2s !important;
+  }
+  
+  .delay-3 {
+    animation-delay: 0.3s !important;
+  }
+  
+  /* Disable complex hover effects on mobile */
+  .hover-lift:hover {
+    transform: translateY(-2px) !important;
+  }
+}
+
+/* Performance optimizations for mobile */
+@media (max-width: 767.98px) {
+  /* Reduce complex animations on mobile */
+  .slide-up,
+  .slide-in-left,
+  .slide-in-right,
+  .fade-in,
+  .reveal,
+  .reveal-left,
+  .reveal-right {
+    animation-duration: 0.3s !important;
+    animation-fill-mode: forwards;
+  }
+  
+  /* Disable parallax and complex effects on mobile */
+  .float,
+  .parallax {
+    animation: none !important;
+    transform: none !important;
+  }
+  
+  /* Simplified pulse animation */
+  .pulse {
+    animation: pulse-simple 2s infinite;
+  }
+}
+
+@keyframes pulse-simple {
+  0%, 100% { transform: scale(1); }
+  50% { transform: scale(1.03); }
+}
+
+/* Global Animation Fallbacks - Ensure all text is visible */
+h1, h2, h3, h4, h5, h6, p, span, div {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Specific animation class fallbacks */
+.slide-up, .slide-down, .slide-in-left, .slide-in-right,
+.fade-in, .scale-in, .reveal, .reveal-left, .reveal-right {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Courses Page Specific Fixes */
+.courses-page .display-4 {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.courses-page .slide-up {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.courses-page .reveal {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* About Us Page Specific Fixes */
+.about-us-page .slide-up {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.about-us-page .card-body h3 {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.about-us-page .text-primary {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+/* Responsive adjustments for new pages */
+@media (max-width: 768px) {
+  .about-us-page .display-4,
+  .contact-us-page .display-4 {
+    font-size: 2.5rem;
+  }
+
+  .about-us-page .lead,
+  .contact-us-page .lead {
+    font-size: 1.1rem;
+  }
+
+  .about-us-page .team-member-card,
+  .contact-us-page .contact-info-card {
+    margin-bottom: 2rem;
+  }
+}
+
+/* Social media hover effects */
+.social-link {
+  transition: all 0.3s ease;
+}
+
+.social-link:hover {
+  transform: translateY(-3px);
+}
+
+/* FAQ accordion enhancements */
+.accordion-button {
+  transition: all 0.3s ease;
+}
+
+.accordion-button:not(.collapsed) {
+  background-color: #f8f9fa;
+  border-color: #dee2e6;
+}
+
+.accordion-button:focus {
+  box-shadow: 0 0 0 0.2rem rgba(13, 110, 253, 0.25);
+}
+
+/* Reduce animations for accessibility */
+.reduce-animations * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}

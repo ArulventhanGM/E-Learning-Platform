@@ -1,0 +1,39 @@
+/* ========================================
+   SPACING UTILITIES
+   ======================================== */
+
+/* Responsive spacing utilities */
+@media (max-width: 575.98px) {
+  .p-mobile-0 { padding: 0 !important; }
+  .p-mobile-1 { padding: 0.25rem !important; }
+  .p-mobile-2 { padding: 0.5rem !important; }
+  .p-mobile-3 { padding: 1rem !important; }
+  .p-mobile-4 { padding: 1.5rem !important; }
+  .p-mobile-5 { padding: 3rem !important; }
+  
+  .m-mobile-0 { margin: 0 !important; }
+  .m-mobile-1 { margin: 0.25rem !important; }
+  .m-mobile-2 { margin: 0.5rem !important; }
+  .m-mobile-3 { margin: 1rem !important; }
+  .m-mobile-4 { margin: 1.5rem !important; }
+  .m-mobile-5 { margin: 3rem !important; }
+  
+  .gap-mobile-1 { gap: 0.25rem !important; }
+  .gap-mobile-2 { gap: 0.5rem !important; }
+  .gap-mobile-3 { gap: 1rem !important; }
+  
+  .py-mobile-2 { padding-top: 0.5rem !important; padding-bottom: 0.5rem !important; }
+  .py-mobile-3 { padding-top: 1rem !important; padding-bottom: 1rem !important; }
+  .py-mobile-4 { padding-top: 1.5rem !important; padding-bottom: 1.5rem !important; }
+  .py-mobile-5 { padding-top: 3rem !important; padding-bottom: 3rem !important; }
+  
+  .mt-mobile-2 { margin-top: 0.5rem !important; }
+  .mt-mobile-3 { margin-top: 1rem !important; }
+  .mt-mobile-4 { margin-top: 1.5rem !important; }
+  .mt-mobile-5 { margin-top: 3rem !important; }
+  
+  .mb-mobile-2 { margin-bottom: 0.5rem !important; }
+  .mb-mobile-3 { margin-bottom: 1rem !important; }
+  .mb-mobile-4 { margin-bottom: 1.5rem !important; }
+  .mb-mobile-5 { margin-bottom: 3rem !important; }
+}

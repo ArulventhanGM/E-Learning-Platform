@@ -1,0 +1,207 @@
+/* ==================================================
+   NAVBAR & HEADER STYLES
+   ================================================== */
+
+/* Navbar Base Styles */
+.navbar {
+  transition: all 0.3s ease-in-out;
+}
+
+.navbar .nav-link {
+  transition: color 0.3s ease-in-out;
+  font-weight: 500;
+}
+
+.navbar .nav-link:hover {
+  transform: translateY(-1px);
+}
+
+.navbar .nav-link.text-dark:hover {
+  color: #007bff !important;
+}
+
+.navbar .nav-link.text-white:hover {
+  color: #f8f9fa !important;
+}
+
+/* Smooth transitions for all navbar elements */
+.navbar .navbar-brand,
+.navbar .btn,
+.navbar .nav-link,
+.navbar .user-name {
+  transition: all 0.3s ease-in-out;
+}
+
+/* Remove all default link styling and focus effects */
+.navbar .nav-link,
+.navbar .nav-link:link,
+.navbar .nav-link:visited,
+.navbar .nav-link:hover,
+.navbar .nav-link:active,
+.navbar .nav-link:focus {
+  text-decoration: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  border-bottom: none !important;
+  background: none !important;
+}
+
+/* Remove Bootstrap's default focus styles */
+.navbar .nav-link:focus-visible {
+  outline: none !important;
+  box-shadow: none !important;
+}
+
+/* Remove any underline effects from child elements */
+.navbar .nav-link span,
+.navbar .nav-link::before,
+.navbar .nav-link::after {
+  border-bottom: none !important;
+  text-decoration: none !important;
+}
+
+/* Enhanced active state for navigation links - REMOVED UNDERLINE */
+.navbar .nav-link.active {
+  position: relative;
+  font-weight: bold;
+}
+
+/* Completely remove the blue underline effect */
+.navbar .nav-link.active::after,
+.navbar .nav-link::after {
+  display: none !important;
+}
+
+/* Additional browser-specific resets for navigation links */
+.navbar-nav .nav-link,
+.navbar-nav .nav-link:link,
+.navbar-nav .nav-link:visited,
+.navbar-nav .nav-link:hover,
+.navbar-nav .nav-link:active,
+.navbar-nav .nav-link:focus {
+  text-decoration: none !important;
+  text-decoration-line: none !important;
+  text-decoration-color: transparent !important;
+  border-bottom: none !important;
+  border: none !important;
+  outline: none !important;
+  box-shadow: none !important;
+  background: transparent !important;
+}
+
+/* Remove focus ring and any browser-specific focus styles */
+.navbar-nav .nav-link:focus-visible,
+.navbar-nav .nav-link:focus-within {
+  outline: none !important;
+  outline-offset: 0 !important;
+  box-shadow: none !important;
+  border: none !important;
+}
+
+/* Remove any pseudo-element underlines */
+.navbar-nav .nav-link::before,
+.navbar-nav .nav-link::after,
+.navbar-nav .nav-link span::before,
+.navbar-nav .nav-link span::after {
+  content: none !important;
+  display: none !important;
+  border: none !important;
+  background: none !important;
+}
+
+/* Ensure React Router NavLink doesn't add default styles */
+.navbar-nav a[aria-current="page"],
+.navbar-nav a.active {
+  text-decoration: none !important;
+  border-bottom: none !important;
+}
+
+/* Cross-browser compatibility for removing underlines */
+.navbar-nav .nav-link {
+  -webkit-text-decoration: none !important;
+  -moz-text-decoration: none !important;
+  -ms-text-decoration: none !important;
+  text-decoration: none !important;
+}
+
+/* Ensure navbar navigation items are always visible */
+.navbar-nav .nav-item {
+  opacity: 1 !important;
+  visibility: visible !important;
+}
+
+.navbar-nav .nav-item.fade-in {
+  opacity: 1 !important;
+}
+
+/* Ensure navbar collapse is visible on desktop */
+@media (min-width: 992px) {
+  .navbar-collapse {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+
+  .navbar-nav {
+    display: flex !important;
+    visibility: visible !important;
+    opacity: 1 !important;
+  }
+}
+
+/* Navbar Brand */
+.navbar-brand {
+  font-size: 1.5rem;
+}
+
+.nav-link.active {
+  font-weight: 600;
+}
+
+/* User Profile Dropdown Styles */
+.user-profile-dropdown .dropdown-toggle {
+  transition: all 0.2s ease;
+}
+
+.user-profile-dropdown .dropdown-toggle:hover {
+  transform: translateY(-1px);
+}
+
+.user-profile-dropdown .dropdown-toggle:focus {
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+.user-profile-dropdown .dropdown-menu {
+  border-radius: 12px;
+  padding: 0;
+  margin-top: 8px;
+  animation: dropdownFadeIn 0.15s ease-out;
+}
+
+.user-profile-dropdown .dropdown-item {
+  transition: all 0.2s ease;
+  border-radius: 0;
+}
+
+.user-profile-dropdown .dropdown-item:hover {
+  background-color: rgba(0, 123, 255, 0.1);
+  transform: translateX(4px);
+}
+
+.user-profile-dropdown .dropdown-item:first-of-type {
+  border-top-left-radius: 12px;
+  border-top-right-radius: 12px;
+}
+
+/* Dropdown Animation */
+@keyframes dropdownFadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(-10px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}

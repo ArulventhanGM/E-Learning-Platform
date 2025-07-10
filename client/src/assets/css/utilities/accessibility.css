@@ -1,0 +1,111 @@
+/* ========================================
+   ACCESSIBILITY UTILITIES
+   ======================================== */
+
+/* Reduce animations for accessibility */
+.reduce-animations * {
+  animation-duration: 0.01ms !important;
+  animation-iteration-count: 1 !important;
+  transition-duration: 0.01ms !important;
+}
+
+/* High contrast mode */
+.high-contrast {
+  filter: contrast(150%);
+}
+
+.high-contrast .btn {
+  border-width: 2px !important;
+}
+
+/* Skip navigation for keyboard users */
+.skip-nav {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: #007bff;
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  border-radius: 4px;
+  z-index: 10000;
+  transition: top 0.3s;
+}
+
+.skip-nav:focus {
+  top: 6px;
+}
+
+/* Enhanced focus states for mobile */
+@media (max-width: 767.98px) {
+  .btn:focus,
+  .form-control:focus,
+  .nav-link:focus {
+    outline: 3px solid rgba(0, 123, 255, 0.5) !important;
+    outline-offset: 2px !important;
+  }
+}
+
+/* Focus states for accessibility */
+@media (max-width: 767.98px) {
+  .navbar-toggler:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+  }
+  
+  .btn:focus {
+    outline: 2px solid rgba(255, 255, 255, 0.5);
+    outline-offset: 2px;
+  }
+  
+  .nav-link:focus {
+    outline: 2px solid rgba(0, 123, 255, 0.5);
+    outline-offset: 2px;
+  }
+}
+
+/* Touch-friendly improvements */
+@media (pointer: coarse) {
+  /* Larger touch targets */
+  .btn,
+  .nav-link,
+  .form-control {
+    min-height: 44px;
+  }
+  
+  /* Improved touch feedback */
+  .btn:active {
+    transform: scale(0.98);
+  }
+  
+  .nav-link:active {
+    background-color: rgba(0, 123, 255, 0.1);
+  }
+}
+
+/* Reduced motion preferences */
+@media (prefers-reduced-motion: reduce) {
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+  }
+}
+
+/* High contrast mode support */
+@media (prefers-contrast: high) {
+  .mobile-menu {
+    background: white;
+    border: 2px solid black;
+  }
+  
+  .mobile-nav-link {
+    border-bottom: 2px solid black;
+  }
+  
+  .close-btn {
+    border: 2px solid black;
+  }
+}

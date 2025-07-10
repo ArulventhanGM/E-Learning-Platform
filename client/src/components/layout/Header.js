@@ -276,6 +276,30 @@ function Header() {
                       </div>
                     </NavLink>
                   ))}
+                  
+                  {/* Theme Toggle Section */}
+                  <div className="mobile-theme-toggle" style={{ animationDelay: '0.5s' }}>
+                    <div className="theme-section-header">
+                      <FontAwesomeIcon icon={faPalette} className="theme-icon" />
+                      <span className="theme-text">Theme</span>
+                    </div>
+                    <div className="theme-buttons">
+                      <button 
+                        className={`theme-btn ${theme === 'light' ? 'active' : ''}`}
+                        onClick={() => setLightTheme()}
+                      >
+                        <FontAwesomeIcon icon={faSun} />
+                        <span>Light</span>
+                      </button>
+                      <button 
+                        className={`theme-btn ${theme === 'dark' ? 'active' : ''}`}
+                        onClick={() => setDarkTheme()}
+                      >
+                        <FontAwesomeIcon icon={faMoon} />
+                        <span>Dark</span>
+                      </button>
+                    </div>
+                  </div>
                 </nav>
                 
                 <div className="mobile-menu-footer">
@@ -309,20 +333,28 @@ function Header() {
                     </div>
                   ) : (
                     <div className="auth-buttons">
-                      <Link to="/login" className="btn btn-outline-primary" onClick={() => {
-                        setMenuOpen(false);
-                        document.body.classList.remove('mobile-menu-open');
-                        document.body.style.overflow = '';
-                      }}>
+                      <Link 
+                        to="/login" 
+                        className="btn btn-outline-primary mobile-auth-btn login-btn" 
+                        onClick={() => {
+                          setMenuOpen(false);
+                          document.body.classList.remove('mobile-menu-open');
+                          document.body.style.overflow = '';
+                        }}
+                      >
                         <FontAwesomeIcon icon={faUser} className="me-2" />
-                        Log In
+                        <span>Log In</span>
                       </Link>
-                      <Link to="/signup" className="btn btn-primary" onClick={() => {
-                        setMenuOpen(false);
-                        document.body.classList.remove('mobile-menu-open');
-                        document.body.style.overflow = '';
-                      }}>
-                        Sign Up
+                      <Link 
+                        to="/signup" 
+                        className="btn btn-primary mobile-auth-btn signup-btn" 
+                        onClick={() => {
+                          setMenuOpen(false);
+                          document.body.classList.remove('mobile-menu-open');
+                          document.body.style.overflow = '';
+                        }}
+                      >
+                        <span>Sign Up</span>
                       </Link>
                     </div>
                   )}
