@@ -11,7 +11,10 @@ import {
   faHeart,
   faSun,
   faMoon,
-  faPalette
+  faPalette,
+  faArrowRight,
+  faGlobe,
+  faUsers
 } from '@fortawesome/free-solid-svg-icons';
 import { useAuth } from '../../contexts/AuthContext';
 import { useCart } from '../../contexts/CartContext';
@@ -92,8 +95,53 @@ function Header() {
   }, [searchActive]);
   
   const toggleMenu = () => {
-    setMenuOpen(!menuOpen);
+    const newMenuState = !menuOpen;
+    setMenuOpen(newMenuState);
+    
+    // Prevent body scroll when menu is open
+    if (newMenuState) {
+      document.body.classList.add('mobile-menu-open');
+      document.body.style.overflow = 'hidden';
+    } else {
+      document.body.classList.remove('mobile-menu-open');
+      document.body.style.overflow = '';
+    }
   };
+
+  // Close menu when clicking outside or on escape
+  useEffect(() => {
+    const handleEscape = (e) => {
+      if (e.key === 'Escape' && menuOpen) {
+        setMenuOpen(false);
+        document.body.classList.remove('mobile-menu-open');
+        document.body.style.overflow = '';
+      }
+    };
+
+    const handleResize = () => {
+      if (window.innerWidth >= 992 && menuOpen) {
+        setMenuOpen(false);
+        document.body.classList.remove('mobile-menu-open');
+        document.body.style.overflow = '';
+      }
+    };
+
+    document.addEventListener('keydown', handleEscape);
+    window.addEventListener('resize', handleResize);
+
+    return () => {
+      document.removeEventListener('keydown', handleEscape);
+      window.removeEventListener('resize', handleResize);
+    };
+  }, [menuOpen]);
+
+  // Cleanup on unmount
+  useEffect(() => {
+    return () => {
+      document.body.classList.remove('mobile-menu-open');
+      document.body.style.overflow = '';
+    };
+  }, []);
 
   const toggleSearch = () => {
     setSearchActive(!searchActive);
@@ -109,74 +157,200 @@ function Header() {
   };
 
   return (
-    <header>
-      <nav className={`navbar navbar-expand-lg fixed-top transition-all ${shouldUseDarkNavbar ? 'navbar-dark bg-white shadow-sm' : 'navbar-light bg-transparent'}`}>
-        <div className="container">
-          <Link 
-            className="navbar-brand fw-bold slide-in-left logo-link d-flex align-items-center" 
-            to="/"
-            onClick={(e) => {
-              console.log('Logo clicked, current path:', location.pathname);
-              
-              // Ensure we navigate to home and close any open menus
-              setMenuOpen(false);
-              setSearchActive(false);
-              setThemeDropdownOpen(false);
-              
-              // Force navigation to home page if not already there
-              if (location.pathname !== '/') {
-                console.log('Navigating to home page...');
-                e.preventDefault(); // Prevent default Link behavior
-                navigate('/');
-              } else {
-                console.log('Already on home page');
-                // If already on home page, scroll to top
-                window.scrollTo({ top: 0, behavior: 'smooth' });
-              }
-            }}
-          >
-            <div className="brand-logo me-2 rounded-circle bg-primary d-flex align-items-center justify-content-center"
-                style={{ width: '40px', height: '40px', flexShrink: 0 }}>
-              <FontAwesomeIcon icon={faGraduationCap} className="text-white" />
-            </div>
-            <div className="d-none d-sm-block">
-              <span className={`${shouldUseDarkNavbar ? 'text-primary' : 'text-white'}`}>Learn</span>
-              <span className={shouldUseDarkNavbar ? 'text-dark' : 'text-white'}>Hub</span>
-            </div>
-          </Link>
-          
-          <button
-            className={`navbar-toggler border-0 ms-auto ${shouldUseDarkNavbar ? 'text-dark' : 'text-white'}`}
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            onClick={toggleMenu}
-            aria-expanded={menuOpen}
-            aria-label="Toggle navigation"
-          >
-            <span className={`navbar-toggler-icon ${shouldUseDarkNavbar ? 'text-dark' : 'text-white'}`}></span>
-          </button>
-          
-          <div className={`collapse navbar-collapse ${menuOpen ? 'show' : ''}`} id="navbarNav">
-            <ul className="navbar-nav mx-auto">
-              {[
-                { path: '/', label: 'Home' },
-                { path: '/courses', label: 'Courses' },
-                { path: '/about-us', label: 'About Us' },
-                { path: '/contact', label: 'Contact' }
-              ].map((nav, index) => (
-                <li className="nav-item fade-in" style={{animationDelay: `${0.1 * (index + 1)}s`}} key={nav.path}>
-                  <NavLink
-                    className={({ isActive }) =>
-                      `nav-link position-relative transition-all px-3 mx-1 ${isActive ? 'active fw-bold' : ''} ${shouldUseDarkNavbar ? 'text-dark' : 'text-white'}`
-                    }
-                    to={nav.path}
+    <>
+      {/* Mobile Menu Overlay */}
+      {menuOpen && (
+        <div 
+          className="mobile-menu-overlay"
+          onClick={() => {
+            setMenuOpen(false);
+            document.body.classList.remove('mobile-menu-open');
+            document.body.style.overflow = '';
+          }}
+        />
+      )}
+      
+      <header>
+        <nav className={`navbar navbar-expand-lg fixed-top transition-all ${shouldUseDarkNavbar ? 'navbar-dark bg-white shadow-sm' : 'navbar-light bg-transparent'}`}>
+          <div className="container">
+            <Link 
+              className="navbar-brand fw-bold slide-in-left logo-link d-flex align-items-center" 
+              to="/"
+              onClick={(e) => {
+                console.log('Logo clicked, current path:', location.pathname);
+                
+                // Ensure we navigate to home and close any open menus
+                setMenuOpen(false);
+                setSearchActive(false);
+                setThemeDropdownOpen(false);
+                
+                // Force navigation to home page if not already there
+                if (location.pathname !== '/') {
+                  console.log('Navigating to home page...');
+                  e.preventDefault(); // Prevent default Link behavior
+                  navigate('/');
+                } else {
+                  console.log('Already on home page');
+                  // If already on home page, scroll to top
+                  window.scrollTo({ top: 0, behavior: 'smooth' });
+                }
+              }}
+            >
+              <div className="brand-logo me-2 rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                  style={{ width: '40px', height: '40px', flexShrink: 0 }}>
+                <FontAwesomeIcon icon={faGraduationCap} className="text-white" />
+              </div>
+              <div className="d-none d-sm-block">
+                <span className={`${shouldUseDarkNavbar ? 'text-primary' : 'text-white'}`}>Learn</span>
+                <span className={shouldUseDarkNavbar ? 'text-dark' : 'text-white'}>Hub</span>
+              </div>
+            </Link>
+
+            <button
+              className={`navbar-toggler border-0 ms-auto ${shouldUseDarkNavbar ? 'text-dark' : 'text-white'}`}
+              type="button"
+              onClick={toggleMenu}
+              aria-expanded={menuOpen}
+              aria-label="Toggle navigation"
+            >
+              <div className="hamburger-icon">
+                <span></span>
+                <span></span>
+                <span></span>
+              </div>
+            </button>
+
+            {/* Enhanced Mobile Menu */}
+            <div className={`mobile-menu ${menuOpen ? 'show' : ''}`}>
+              <div className="mobile-menu-container">
+                <div className="mobile-menu-header">
+                  <div className="d-flex align-items-center">
+                    <div className="brand-logo me-2 rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                        style={{ width: '35px', height: '35px' }}>
+                      <FontAwesomeIcon icon={faGraduationCap} className="text-white" />
+                    </div>
+                    <div>
+                      <span className="text-primary fw-bold">Learn</span>
+                      <span className="text-dark fw-bold">Hub</span>
+                    </div>
+                  </div>
+                  <button 
+                    className="close-btn" 
+                    onClick={() => {
+                      setMenuOpen(false);
+                      document.body.classList.remove('mobile-menu-open');
+                      document.body.style.overflow = '';
+                    }}
+                    aria-label="Close menu"
                   >
-                    {nav.label}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
+                    <span className="close-icon">&times;</span>
+                  </button>
+                </div>
+                
+                <nav className="mobile-menu-nav">
+                  {[
+                    { path: '/', label: 'Home', icon: faGlobe },
+                    { path: '/courses', label: 'Courses', icon: faGraduationCap },
+                    { path: '/about-us', label: 'About Us', icon: faUsers },
+                    { path: '/contact', label: 'Contact', icon: faUser }
+                  ].map((nav, index) => (
+                    <NavLink
+                      key={nav.path}
+                      to={nav.path}
+                      className={({ isActive }) =>
+                        `mobile-nav-link ${isActive ? 'active' : ''}`
+                      }
+                      onClick={() => {
+                        setMenuOpen(false);
+                        document.body.classList.remove('mobile-menu-open');
+                        document.body.style.overflow = '';
+                      }}
+                      style={{ animationDelay: `${0.1 * (index + 1)}s` }}
+                    >
+                      <div className="nav-link-content">
+                        <div className="nav-link-left">
+                          <FontAwesomeIcon icon={nav.icon} className="nav-icon" />
+                          <span className="nav-text">{nav.label}</span>
+                        </div>
+                        <FontAwesomeIcon icon={faArrowRight} className="nav-arrow" />
+                      </div>
+                    </NavLink>
+                  ))}
+                </nav>
+                
+                <div className="mobile-menu-footer">
+                  {isAuthenticated ? (
+                    <div className="user-section">
+                      <div className="user-info">
+                        <div className="user-avatar">
+                          <FontAwesomeIcon icon={faUser} />
+                        </div>
+                        <div className="user-details">
+                          <div className="user-name">{user?.fullName || 'User'}</div>
+                          <div className="user-email">{user?.email}</div>
+                        </div>
+                      </div>
+                      <div className="action-buttons">
+                        <Link to="/dashboard" className="btn btn-outline-primary btn-sm" onClick={() => {
+                          setMenuOpen(false);
+                          document.body.classList.remove('mobile-menu-open');
+                          document.body.style.overflow = '';
+                        }}>
+                          Dashboard
+                        </Link>
+                        <Link to="/profile" className="btn btn-outline-secondary btn-sm" onClick={() => {
+                          setMenuOpen(false);
+                          document.body.classList.remove('mobile-menu-open');
+                          document.body.style.overflow = '';
+                        }}>
+                          Profile
+                        </Link>
+                      </div>
+                    </div>
+                  ) : (
+                    <div className="auth-buttons">
+                      <Link to="/login" className="btn btn-outline-primary" onClick={() => {
+                        setMenuOpen(false);
+                        document.body.classList.remove('mobile-menu-open');
+                        document.body.style.overflow = '';
+                      }}>
+                        <FontAwesomeIcon icon={faUser} className="me-2" />
+                        Log In
+                      </Link>
+                      <Link to="/signup" className="btn btn-primary" onClick={() => {
+                        setMenuOpen(false);
+                        document.body.classList.remove('mobile-menu-open');
+                        document.body.style.overflow = '';
+                      }}>
+                        Sign Up
+                      </Link>
+                    </div>
+                  )}
+                </div>
+              </div>
+            </div>
+
+            {/* Desktop Navigation */}
+            <div className="collapse navbar-collapse d-lg-flex">
+              <ul className="navbar-nav mx-auto">
+                {[
+                  { path: '/', label: 'Home' },
+                  { path: '/courses', label: 'Courses' },
+                  { path: '/about-us', label: 'About Us' },
+                  { path: '/contact', label: 'Contact' }
+                ].map((nav, index) => (
+                  <li className="nav-item fade-in" style={{animationDelay: `${0.1 * (index + 1)}s`}} key={nav.path}>
+                    <NavLink
+                      className={({ isActive }) =>
+                        `nav-link position-relative transition-all px-3 mx-1 ${isActive ? 'active fw-bold' : ''} ${shouldUseDarkNavbar ? 'text-dark' : 'text-white'}`
+                      }
+                      to={nav.path}
+                    >
+                      {nav.label}
+                    </NavLink>
+                  </li>
+                ))}
+              </ul>
             
             <div className="d-flex align-items-center gap-3 slide-in-right">
               {/* Search button and form */}
@@ -439,6 +613,7 @@ function Header() {
         }
       `}</style>
     </header>
+    </>
   );
 }
 
