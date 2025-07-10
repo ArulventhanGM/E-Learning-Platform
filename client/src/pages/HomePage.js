@@ -115,10 +115,9 @@ function HomePage() {
   return (
     <div className="home-page">
       {/* Hero Section with Animated Gradient Background */}
-      <section className="hero-section py-5 position-relative overflow-hidden" 
+      <section className="hero-section position-relative overflow-hidden" 
                style={{ 
                  background: 'linear-gradient(135deg, #4a6bff 0%, #6a11cb 100%)',
-                 minHeight: '85vh',
                  display: 'flex',
                  alignItems: 'center'
                }}>
@@ -150,13 +149,18 @@ function HomePage() {
           animation: 'float 8s ease-in-out infinite'
         }}></div>
 
-        <div className="container py-5 position-relative">
+        <div className="container position-relative">
           <div className="row align-items-center">
-            <div className="col-lg-6 text-white reveal-left">
-              {/* Hidden: Ready To Learn badge */}
-              <h1 className="display-4 fw-bold mb-4 slide-up">Unlock Your <span className="text-warning">Potential</span> With Our Courses</h1>
-              <p className="lead mb-4 slide-up delay-1 opacity-75">Access a world of knowledge with our comprehensive online courses. Learn from industry experts and advance your career.</p>
-              <div className="d-flex gap-3 slide-up delay-2 flex-column flex-sm-row">
+            <div className="col-lg-6 text-white reveal-left text-center text-lg-start">
+              <h1 className="display-4 fw-bold mb-4 slide-up">
+                Unlock Your <span className="text-warning">Potential</span> With Our Courses
+              </h1>
+              <p className="lead mb-4 slide-up delay-1 opacity-75">
+                Access a world of knowledge with our comprehensive online courses. Learn from industry experts and advance your career.
+              </p>
+              
+              {/* Mobile-optimized button group */}
+              <div className="d-flex gap-3 slide-up delay-2 flex-column flex-sm-row justify-content-center justify-content-lg-start mb-4">
                 <Link to="/courses" className="btn btn-light btn-lg rounded-pill hover-lift">
                   Explore Courses <FontAwesomeIcon icon={faArrowRight} className="ms-2" />
                 </Link>
@@ -165,32 +169,33 @@ function HomePage() {
                 </Link>
               </div>
               
-              <div className="mt-5 d-flex gap-4 pt-3 slide-up delay-3 justify-content-center justify-content-lg-start flex-wrap">
-                <div className="d-flex align-items-center">
+              {/* Mobile-optimized stats */}
+              <div className="d-flex gap-3 slide-up delay-3 justify-content-center justify-content-lg-start flex-wrap stats-mobile">
+                <div className="d-flex align-items-center stat-item">
                   <div className="icon-circle bg-light text-primary me-2 d-flex align-items-center justify-content-center" style={{width: '40px', height: '40px', borderRadius: '50%'}}>
                     <FontAwesomeIcon icon={faGraduationCap} />
                   </div>
-                  <div>
-                    <div className="fw-bold text-white counter-value" data-target="1000">0</div>
-                    <div className="small text-white opacity-75">Courses</div>
+                  <div className="stat-text">
+                    <div className="fw-bold stat-number counter-value" data-target="1000">1000+</div>
+                    <div className="small opacity-75">Courses</div>
                   </div>
                 </div>
-                <div className="d-flex align-items-center">
+                <div className="d-flex align-items-center stat-item">
                   <div className="icon-circle bg-light text-primary me-2 d-flex align-items-center justify-content-center" style={{width: '40px', height: '40px', borderRadius: '50%'}}>
                     <FontAwesomeIcon icon={faUserGraduate} />
                   </div>
-                  <div>
-                    <div className="fw-bold text-white counter-value" data-target="50000">0</div>
-                    <div className="small text-white opacity-75">Students</div>
+                  <div className="stat-text">
+                    <div className="fw-bold stat-number counter-value" data-target="50000">50K+</div>
+                    <div className="small opacity-75">Students</div>
                   </div>
                 </div>
-                <div className="d-flex align-items-center">
+                <div className="d-flex align-items-center stat-item">
                   <div className="icon-circle bg-light text-primary me-2 d-flex align-items-center justify-content-center" style={{width: '40px', height: '40px', borderRadius: '50%'}}>
                     <FontAwesomeIcon icon={faStar} />
                   </div>
-                  <div>
-                    <div className="fw-bold text-white">4.8</div>
-                    <div className="small text-white opacity-75">Rating</div>
+                  <div className="stat-text">
+                    <div className="fw-bold stat-number">4.8</div>
+                    <div className="small opacity-75">Rating</div>
                   </div>
                 </div>
               </div>

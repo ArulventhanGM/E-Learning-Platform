@@ -110,10 +110,10 @@ function Header() {
 
   return (
     <header>
-      <nav className={`navbar navbar-expand-lg navbar-light fixed-top transition-all ${shouldUseDarkNavbar ? 'bg-white shadow-sm py-2' : 'bg-transparent py-3'}`}>
+      <nav className={`navbar navbar-expand-lg fixed-top transition-all ${shouldUseDarkNavbar ? 'navbar-dark bg-white shadow-sm' : 'navbar-light bg-transparent'}`}>
         <div className="container">
           <Link 
-            className="navbar-brand fw-bold slide-in-left logo-link" 
+            className="navbar-brand fw-bold slide-in-left logo-link d-flex align-items-center" 
             to="/"
             onClick={(e) => {
               console.log('Logo clicked, current path:', location.pathname);
@@ -135,27 +135,26 @@ function Header() {
               }
             }}
           >
-            <div className="d-flex align-items-center">
-              <div className="brand-logo me-2 rounded-circle bg-primary d-flex align-items-center justify-content-center"
-                  style={{ width: '40px', height: '40px', overflow: 'hidden' }}>
-                <FontAwesomeIcon icon={faGraduationCap} className="text-white" />
-              </div>
-              <div>
-                <span className={`${shouldUseDarkNavbar ? 'text-primary' : 'text-white'}`}>Learn</span>
-                <span className={shouldUseDarkNavbar ? 'text-dark' : 'text-white'}>Hub</span>
-              </div>
+            <div className="brand-logo me-2 rounded-circle bg-primary d-flex align-items-center justify-content-center"
+                style={{ width: '40px', height: '40px', flexShrink: 0 }}>
+              <FontAwesomeIcon icon={faGraduationCap} className="text-white" />
+            </div>
+            <div className="d-none d-sm-block">
+              <span className={`${shouldUseDarkNavbar ? 'text-primary' : 'text-white'}`}>Learn</span>
+              <span className={shouldUseDarkNavbar ? 'text-dark' : 'text-white'}>Hub</span>
             </div>
           </Link>
           
           <button
-            className={`navbar-toggler border-0 hover-shadow ${shouldUseDarkNavbar ? '' : 'text-white'}`}
+            className={`navbar-toggler border-0 ms-auto ${shouldUseDarkNavbar ? 'text-dark' : 'text-white'}`}
             type="button"
             data-bs-toggle="collapse"
             data-bs-target="#navbarNav"
             onClick={toggleMenu}
             aria-expanded={menuOpen}
+            aria-label="Toggle navigation"
           >
-            <span className={`navbar-toggler-icon ${shouldUseDarkNavbar ? '' : 'text-white'}`}></span>
+            <span className={`navbar-toggler-icon ${shouldUseDarkNavbar ? 'text-dark' : 'text-white'}`}></span>
           </button>
           
           <div className={`collapse navbar-collapse ${menuOpen ? 'show' : ''}`} id="navbarNav">
